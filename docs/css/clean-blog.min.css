@@ -22,3 +22,9 @@
  }
 
  /* END EMBEDDED CONTAINER */
+
+ .external-link{
+   #padding-left: 5%;
+   font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+   font-weight: 800;
+ }

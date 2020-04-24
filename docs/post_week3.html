@@ -113,16 +113,14 @@
                     
                     <h2 class="section-heading">Go With the Flow</h2>
 
-                    <p>Since Hands on Deck users are going to be looking out at the seas for a sizeable portion of the experience, it is vital to make the water realistic and dynamic. However, we still want to maintain performance considering the Quest's graphical limitations, so we decided to go for a more simplistic but still lively take. We found a tutorial on how to create a water plane using the ShaderGraph and Lightweight Render Pipeline packages. After following it, we got this result:</p>
+                    <p>Since Hands on Deck users are going to be looking out at the seas for a sizeable portion of the experience, it is vital to make the water realistic and dynamic. Initially, we tried to go for a more simplistic take considering the Quest's graphical limitations. We found a tutorial on how to create a water plane using the ShaderGraph and Lightweight Render Pipeline packages. We followed it, but while the water had decent movement and color, the waves were "pointy," the ripples looked more like a swimming pool, and it didn't seem like this method would scale. So, we looked onward for more ocean-worthy methods and stumbled upon a fantastic open source ocean generation system, Crest. It looks great, has good performance, decent documentation, and customization for waves, foam, color, reflectivity, and more. This might just be exactly what we're looking for.</p>
                     
                     <a href="#">
                         <video width="750"; height: auto; autoplay loop muted inline>
-                          <source src="video/ocean-test.mp4" type="video/mp4">
+                          <source src="video/crest-test.mp4" type="video/mp4">
                           Your browser does not support the video tag.
                         </video>
                     </a>
-                    
-                    <p>The water has a convincingly natural movement and color, but there are a few downsides. The waves look a little "pointy" when the intensity is turned up, the ripples look a bit more swimming pool than high seas, and it doesn't seem like this method will scale to as large an environment as we're aiming for. So, next we'll try to find a more ocean-suitable method of simulating water.</p>
 
                     <hr>
                     <h4 class="section-heading">- Work Log -</h4>

@@ -98,19 +98,19 @@
                     <h2 class="section-heading">Protohype (PUN Intended)</h2>
 
                     <p>After doing some research on the options for multiplayer Quest development, we found Photon Unity Networking (PUN) 2 to be the most promising. It's been used by a variety of established developers and has the most documentation and tutorials. Unfortunately, the rapid changes to Quest development as a whole have made many tutorials out of date and inaccurate, which has made getting a working prototype challenging. In addition, once we found a tutorial we could follow we encountered a bug where one VR camera rig would steal the view for all players. Despite these roadblocks, we were able to pull together a scene where 2 people could run around and shoot lasers at each other. While this doesn't have anything to do with sailing, it is progress.</p>
-                    
+
                     <a href="#">
-                        <img class="img-responsive" src="img/rollaball.PNG" alt="">
+                        <img class="img-responsive" src="img/Photon_PUN_Multi.PNG" alt="">
                     </a>
-                    
+
                     <h2 class="section-heading">Ship-Shape</h2>
 
                     <p>While we're excited to start acquiring and modeling assets for Hands on Deck, we first need to get an idea of how to properly set up imported assets in a project. Fortunately for testing, there are a number of free assets on the Unity Asset Store, so we selected a fitting colonial ship as the prototype. We set up a scene, rigged the ship with the proper physics components, and were able to get a player to move around on the deck in the Quest and bump into parts that should be bumped into. A good start then.</p>
-                    
+
                     <a href="#">
                         <img class="img-responsive" src="img/ship-test.PNG" alt="">
                     </a>
-                    
+
                     <h2 class="section-heading">Go With the Flow</h2>
 
                     <p>Since Hands on Deck users are going to be looking out at the seas for a sizeable portion of the experience, it is vital to make the water realistic and dynamic. Initially, we tried to go for a more simplistic take considering the Quest's graphical limitations. We found a tutorial on how to create a water plane using the ShaderGraph and Lightweight Render Pipeline packages. We followed it, but while the water had decent movement and color, the waves were "pointy," the ripples looked more like a swimming pool, and it didn't seem like this method would scale. So, we looked onward for more ocean-worthy methods and stumbled upon a fantastic open source ocean generation system, Crest. It looks great, has good performance, decent documentation, and customization for waves, foam, color, reflectivity, and more. This might just be exactly what we're looking for.</p>

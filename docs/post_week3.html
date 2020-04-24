@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Hands on Deck VR - Week 3</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Theme CSS -->
+    <link href="css/clean-blog.min.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    Menu <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand" href="index.html">Hands on Deck</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="index.html">Home</a>
+                    </li>
+                    <li>
+                        <a href="about.html">About</a>
+                    </li>
+                    <li>
+                        <a href="post.html">Sample Post</a>
+                    </li>
+                    <li>
+                        <a href="contact.html">Contact</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Page Header -->
+    <!-- Set your background image for this header on the line below. -->
+    <header class="intro-header" style="background-image: url('img/prototyping-bg.png')">   <!-- change the post main background image -->
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="post-heading">
+                        <h1>Week 3</h1>
+                        <h2 class="subheading">Team 6 gets our hands dirty, learning and testing core project mechanics in Unity.</h2>
+                        <span class="meta">Posted by <a href="#">VRcap Team 6</a> on April 24, 2020</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Post Content -->
+    <article>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+
+                    <h2 class="section-heading">Learning the Ropes</h2>
+
+                    <p>This week, we split off to start researching and prototyping different aspects of the MVP for Hands on Deck, and at the same time familiarizing ourselves with Unity and developing on the Oculus Quest. </p>
+
+                    <q>There were three main areas of the MVP that we experimented with this week: multiplayer, ship mechanics, and water physics. James and Julian teamed up to tackle multiplayer while Patrick helmed the ship and Abhinav dove into water.</q>
+
+                    <h2 class="section-heading">Protohype (PUN Intended)</h2>
+
+                    <p>After doing some research on the options for multiplayer Quest development, we found Photon Unity Networking (PUN) 2 to be the most promising. It's been used by a variety of established developers and has the most documentation and tutorials. Unfortunately, the rapid changes to Quest development as a whole have made many tutorials out of date and inaccurate, which has made getting a working prototype challenging. In addition, once we found a tutorial we could follow we encountered a bug where one VR camera rig would steal the view for all players. Despite these roadblocks, we were able to pull together a scene where 2 people could run around and shoot lasers at each other. While this doesn't have anything to do with sailing, it is progress.</p>
+                    
+                    <a href="#">
+                        <img class="img-responsive" src="img/rollaball.PNG" alt="">
+                    </a>
+                    
+                    <h2 class="section-heading">Ship-Shape</h2>
+
+                    <p>While we're excited to start acquiring and modeling assets for Hands on Deck, we first need to get an idea of how to properly set up imported assets in a project. Fortunately for testing, there are a number of free assets on the Unity Asset Store, so we selected a fitting colonial ship as the prototype. We set up a scene, rigged the ship with the proper physics components, and were able to get a player to move around on the deck in the Quest and bump into parts that should be bumped into. A good start then.</p>
+                    
+                    <a href="#">
+                        <img class="img-responsive" src="img/ship-test.PNG" alt="">
+                    </a>
+                    
+                    <h2 class="section-heading">Go With the Flow</h2>
+
+                    <p>Since Hands on Deck users are going to be looking out at the seas for a sizeable portion of the experience, it is vital to make the water realistic and dynamic. However, we still want to maintain performance considering the Quest's graphical limitations, so we decided to go for a more simplistic but still lively take. We found a tutorial on how to create a water plane using the ShaderGraph and Lightweight Render Pipeline packages. After following it, we got this result:</p>
+                    
+                    <a href="#">
+                        <video width="750"; height: auto; autoplay loop muted inline>
+                          <source src="video/ocean-test.mp4" type="video/mp4">
+                          Your browser does not support the video tag.
+                        </video>
+                    </a>
+                    
+                    <p>The water has a convincingly natural movement and color, but there are a few downsides. The waves look a little "pointy" when the intensity is turned up, the ripples look a bit more swimming pool than high seas, and it doesn't seem like this method will scale to as large an environment as we're aiming for. So, next we'll try to find a more ocean-suitable method of simulating water.</p>
+
+                    <hr>
+                    <h4 class="section-heading">- Work Log -</h4>
+                    <p>James and Julian: researched and prototyped multiplayer for Quest using PUN 2</p>
+                    <p>Abhi: researched and tested methods of simulating water for the environment</p>
+                    <p>Patrick: tested rigging physics to premade ship asset</p>
+                    <h4 class="section-heading">- Work Plan -</h4>
+                    <p>Patrick and Abhi: acquire and rig final ship asset and add it to water environment. Figure out wind physics for waves and ship movement</p>
+                    <p>James and Julian: work out the kinks with PUN2 networking and get a joinable lobby working, potentially in the environment Patrick and Abhi make.</p>
+                    <p>Everyone: set up app for MVP in Oculus, set up repo for Unity project and sync up VC workflows</p>
+                </div>
+            </div>
+        </div>
+    </article>
+
+    <hr>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <ul class="list-inline text-center">
+                        <li>
+                            <a href="#">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                    <p class="copyright text-muted">Copyright &copy; Your Website 2016</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- jQuery -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Contact Form JavaScript -->
+    <script src="js/jqBootstrapValidation.js"></script>
+    <script src="js/contact_me.js"></script>
+
+    <!-- Theme JavaScript -->
+    <script src="js/clean-blog.min.js"></script>
+
+</body>
+
+</html>

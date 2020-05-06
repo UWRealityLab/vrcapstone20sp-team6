@@ -89,6 +89,9 @@ namespace OculusSampleFramework
         public Texture applicationLabelTexture;
         public Texture compositorLabelTexture;
 
+        [Header("NetworkController")]
+        public Com.Udomugo.OculusVRTutorial.LauncherVR launcher;
+
         /// <summary>
         /// The resources & settings needed for the level loading simulation demo
         /// </summary>
@@ -306,6 +309,8 @@ namespace OculusSampleFramework
         /// </summary>
         void SimulateLevelLoad()
         {
+            launcher.Connect();
+            /*
             int numToPrint = 0;
             for (int p = 0; p < numLoopsTrigger; p++)
             {
@@ -331,7 +336,7 @@ namespace OculusSampleFramework
                     newObjTransform.rotation = Quaternion.Euler(newAngle);
                     spawnedCubes.Add(newInst);
                 }
-            }
+            } */
         }
 
 

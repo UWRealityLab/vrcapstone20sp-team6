@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using UnityEngine.UIElements;
 
 namespace Com.Udomugo.OculusVRTutorial
 {
@@ -12,10 +13,17 @@ namespace Com.Udomugo.OculusVRTutorial
         [SerializeField]
         public GameObject ship;
 
+        [SerializeField]
+        public GameObject enviro;
+
+        private Transform ship_pos;
+        private Transform enviro_pos;
+
         // Start is called before the first frame update
         void Start()
         {
-
+            ship_pos = ship.transform;
+            enviro_pos = enviro.transform;
         }
 
         // Update is called once per frame
@@ -28,7 +36,11 @@ namespace Com.Udomugo.OculusVRTutorial
         {
             if (stream.IsWriting)
             {
+                stream.SendNext(ship_pos.position);
+                stream.SendNext(ship_pos.rotation);
 
+                stream.SendNext(enviro_pos.position);
+                stream.SendNext(enviro_pos.rotation);
             }
         }
 

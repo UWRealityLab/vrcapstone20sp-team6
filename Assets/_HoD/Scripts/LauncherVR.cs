@@ -67,7 +67,7 @@ namespace Com.Udomugo.OculusVRTutorial
         {
             /*progressLabel.SetActive(false);
             controlPanel.SetActive(true);*/
-            Connect();
+            //Connect();
         }
 
         #endregion

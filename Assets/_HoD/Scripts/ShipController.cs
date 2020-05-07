@@ -64,7 +64,10 @@ public class ShipController : MonoBehaviourPunCallbacks, IPunObservable
         //ship_rb.MovePosition(transform.position + (wind_direction * wind.speed * shipSpeed* Time.deltaTime));
         //ship_rb.velocity = wind_direction * wind.speed * shipSpeed;
         //this.transform.localRotation = new Vector3(0f, 0f, (shipHelm * shipSpeed));
-        this.transform.localEulerAngles = new Vector3(0f, (shipHelm * 100), 0f);
+
+        // best method of turning the ship
+        //this.transform.localEulerAngles = new Vector3(0f, (shipHelm * 100), 0f);
+
         
         //enviro_rb.AddForce((wind_direction + Vector3.Cross(this.transform.position, last_place)) - ();
 
@@ -74,6 +77,11 @@ public class ShipController : MonoBehaviourPunCallbacks, IPunObservable
         Rigidbody ship = this.GetComponent<Rigidbody>();
 
         // two best sailing methods
+
+        // experimental direction
+        wind_direction = wind_direction + new Vector3(shipHelm, 0.0f, 0.0f);
+
+
         enviro_rb.velocity = ((-1) * wind_direction) * wind.speed * shipSpeed;
         //ship.AddForce(wind_direction * wind.speed * shipSpeed);
 

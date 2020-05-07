@@ -37,11 +37,12 @@ namespace Com.Udomugo.HoD
         // Update is called once per frame
         void Update()
         {
+            /*
             if (photonView.IsMine)
             {
-                //transform.position = Vector3.Lerp(transform.position, enviro_pos, Time.deltaTime * 5);
-                //transform.rotation = Quaternion.Lerp(transform.rotation, enviro_rot, Time.deltaTime * 5);
-            }
+                transform.position = Vector3.Lerp(transform.position, enviro_pos, Time.deltaTime * 5);
+                transform.rotation = Quaternion.Lerp(transform.rotation, enviro_rot, Time.deltaTime * 5);
+            }*/
             
         }
     }

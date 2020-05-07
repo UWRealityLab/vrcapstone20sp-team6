@@ -1695,6 +1695,11 @@ PrefabInstance:
       propertyPath: wheel
       value: 
       objectReference: {fileID: 950088785}
+    - target: {fileID: 5676453638132736236, guid: 50d94e8cebe597146bd2d43d84f391ac,
+        type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 934372174}
     - target: {fileID: 5676453638132736238, guid: 50d94e8cebe597146bd2d43d84f391ac,
         type: 3}
       propertyPath: viewIdField

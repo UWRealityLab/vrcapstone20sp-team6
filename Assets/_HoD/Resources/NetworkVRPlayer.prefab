@@ -262,6 +262,7 @@ MonoBehaviour:
   avatar_head: {fileID: 1320928402119338362}
   avatar_left_hand: {fileID: 2012639090145469563}
   avatar_right_hand: {fileID: 1194453465512467642}
+  enviro: {fileID: 3823116270109938224, guid: e5818e8652bdd7b408c2c6831af4115f, type: 3}
 --- !u!1 &4772060690731755432
 GameObject:
   m_ObjectHideFlags: 0

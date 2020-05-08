@@ -69,7 +69,7 @@
 
     <!-- Page Header -->
     <!-- Set your background image for this header on the line below. -->
-    <header class="intro-header" style="background-image: url('img/prototyping-bg.png')">   <!-- change the post main background image -->
+    <header class="intro-header" style="background-image: url('img/wheel-bg.jpg')">   <!-- change the post main background image -->
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
@@ -135,7 +135,11 @@
 
                     <h2 class="section-heading">As Far As The Eye Can “Sea”</h2>
 
-                    <p></p>
+                    <p>Finally, we have come to a solution to our water problem. It came down to two options in the end with converse tradeoffs. After playing around further with the settings for Crest, we got the framerate to a playable level, although still jittery. We also tried out a shader solution using the Universal Render Pipeline package and the ShaderGraph tool to create a dynamic material that is placed on planes. Shaders allowed us to use and animate a normal map on the plane to add the shimmering water effect, as well as add waves to the plane by manipulating the normal. The framerate within the Quest device for this solution was also much better, although unfortunately the visual quality of the shader did take a hit. So it came down to choosing better looking water with worse framerate with Crest or worse water with max framerate with URP. Ultimately, water is only a part of our product so we chose to sacrifice its quality to keep the rest of the experience more enjoyable. Shaders on, haters gone.</p>
+                    
+                    <a href="#">
+                        <img class="img-responsive" src="img/URP_water.png" alt="">
+                    </a>
 
                     <h2 class="section-heading">Land Ho!</h2>
 
@@ -158,7 +162,7 @@
                     <p>Everyone: Presented MVP progress in lecture on Tuesday and prepared for Thursday’s demo in lab</p>
                     <p>James: Found tutorial on handling large scale environments and created first prototype environment. Created basic ship controller script for sailing mechanics incorporating wind speed, wind direction, ship heading, and placeholder value for the amount of sails (unfurled sails to catch the wind). Created these placeholder assets to develop the correct world building approach to reserve the most network and processing overhead we can get from the quest.</p>
                     <p>Patrick: Created slides and videos for Tuesday’s presentation and contributed to the ship’s steering wheel mechanics as well as grabbing objects</p>
-                    <p>Abhinav: </p>
+                    <p>Abhinav: Tinkered with Crest settings again to get as optimized as possible, as well as trying out a water solution with shaders. Finalized water solution to the shader option.</p>
                     <p>Julian: Implemented functioning interactive object synchronicity between players through ownership transferring. Built upon prior investigation in Remote Procedure Call usage and network optimization research.</p>
                     <h4 class="section-heading">- Work Plan -</h4>
                     <p>Everyone: Re-research assets and pick ones for the project going forwards, rebuild ship frontend using new assets and migrate backend</p>
@@ -166,7 +170,7 @@
                         Work on more in-game mechanical devices such as hand cranks, ropes, and a boarding plank.
                     </p>
                     <p>Patrick: Rebuild ship frontend on new ship asset and implementing more realistic representations of sailing mechanics, from being able to raise/lower the sails, to using ropes to change their directions.</p>
-                    <p>Abhinav: </p>
+                    <p>Abhinav: Experiment with land generation with new assets and how to simulate ship rotation. Help out with ship mechanics such as sails and ropes.</p>
                     <p>Julian: Dive into ship movement interaction: See how feasible it is to have something in the like of a rigidbody implementation for the ship, or if the scene should continue to transform around the ship. Apply PUN object interaction functionality to ship interactables. Fine tune the accuracy of object placement synchronicity.</p>
                 </div>
             </div>

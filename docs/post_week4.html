@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Hands on Deck VR - Week 3</title>
+    <title>Hands on Deck VR - Week 4</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -75,8 +75,8 @@
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                     <div class="post-heading">
                         <h1>Week 4</h1>
-                        <h2 class="subheading">Team 6 encounters some trouble in the water, but continues to make progress</h2>
-                        <span class="meta">Posted by <a href="#">VRcap Team 6</a> on May 1, 2020</span>
+                        <h2 class="subheading">Team 6 gets our hands dirty, learning and testing core project mechanics in Unity.</h2>
+                        <span class="meta">Posted by <a href="#">VRcap Team 6</a> on April 24, 2020</span>
                     </div>
                 </div>
             </div>
@@ -89,44 +89,48 @@
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
 
-                    <h2 class="section-heading">Turbulent Waters</h2>
+                    <h2 class="section-heading">Learning the Ropes</h2>
 
-                    <p>Water rendering is one of the most important steps for us as we develop Hands on Deck. Currently, we are using Crest Ocean System as our water renderer. Crest renders beautiful scalable oceans with deep customization on the behavior and appearance, which is perfect for immersing our users in the experience. However, due to hardware restrictions with the Oculus Quest we have had some performance difficulties with Crest. In addition, figuring out ship buoyancy in Crest water has a significant learning curve. Focus has shifted to optimizing Crest, but if it’s not possible we will have to look for other rendering solutions since smoothness is a priority, especially when dealing with VR.</p>
+                    <p>This week, we split off to start researching and prototyping different aspects of the MVP for Hands on Deck, and at the same time familiarizing ourselves with Unity and developing on the Oculus Quest. </p>
 
-                    <h2 class="section-heading">Multiplayer Synchronicity</h2>
+                    <q>There were three main areas of the MVP that we experimented with this week: multiplayer, ship mechanics, and water physics. James and Julian teamed up to tackle multiplayer while Patrick helmed the ship and Abhinav dove into water.</q>
 
-                    <p>We were successful in prototyping the ability to have multiple camera views for different device platforms present in the same online. Currently we can have desktop and oculus quest clients join, while synchronizing their respective positions and animations in the online environment, referred to as a room in the PUN api documentation.
-                        Now that we are confident in the ability to connect and communicate with clients on different platforms, the focus for developing online interaction will turn to how to organize the clients’ ownership of an object and what we will focus on synchronizing.
-                        The client ownership is a concept that allows only one client at a time to make changes to the transform, or position, of a GameObject in the Unity scene. Implementing the transfer of ownership will be pivotal in allowing clients to hand objects to each other, or even interacting with an object lying in the world, as by default all objects belong to the first person in the PUN room.
-                    </p>
+                    <h2 class="section-heading">Protohype (PUN Intended)</h2>
 
-                    <!-- @james add the multiplayer video here! ;) -->
+                    <p>After doing some research on the options for multiplayer Quest development, we found Photon Unity Networking (PUN) 2 to be the most promising. It's been used by a variety of established developers and has the most documentation and tutorials. Unfortunately, the rapid changes to Quest development as a whole have made many tutorials out of date and inaccurate, which has made getting a working prototype challenging. In addition, once we found a tutorial we could follow we encountered a bug where one VR camera rig would steal the view for all players. Despite these roadblocks, we were able to pull together a scene where 2 people could run around and shoot lasers at each other. While this doesn't have anything to do with sailing, it is progress.</p>
+
+                    <a href="#">
+                        <img class="img-responsive" src="img/Photon_PUN_Multi.PNG" alt="">
+                    </a>
+
+                    <h2 class="section-heading">Ship-Shape</h2>
+
+                    <p>While we're excited to start acquiring and modeling assets for Hands on Deck, we first need to get an idea of how to properly set up imported assets in a project. Fortunately for testing, there are a number of free assets on the Unity Asset Store, so we selected a fitting colonial ship as the prototype. We set up a scene, rigged the ship with the proper physics components, and were able to get a player to move around on the deck in the Quest and bump into parts that should be bumped into. A good start then.</p>
+
+                    <a href="#">
+                        <img class="img-responsive" src="img/ship-test.PNG" alt="">
+                    </a>
+
+                    <h2 class="section-heading">Go With the Flow</h2>
+
+                    <p>Since Hands on Deck users are going to be looking out at the seas for a sizeable portion of the experience, it is vital to make the water realistic and dynamic. Initially, we tried to go for a more simplistic take considering the Quest's graphical limitations. We found a tutorial on how to create a water plane using the ShaderGraph and Lightweight Render Pipeline packages. We followed it, but while the water had decent movement and color, the waves were "pointy," the ripples looked more like a swimming pool, and it didn't seem like this method would scale. So, we looked onward for more ocean-worthy methods and stumbled upon a fantastic open source ocean generation system, Crest. It looks great, has good performance, decent documentation, and customization for waves, foam, color, reflectivity, and more. This might just be exactly what we're looking for.</p>
+                    
                     <a href="#">
                         <video width="750"; height: auto; autoplay loop muted inline>
-                          <source src="video/multiplayer_video_002_webClip_zoom.mp4" type="video/mp4">
+                          <source src="video/crest-test.mp4" type="video/mp4">
                           Your browser does not support the video tag.
                         </video>
                     </a>
 
-                    <h2 class="section-heading">Lowering the Sails</h2>
-
-                    <p>Wind is going to be an essential part of our experience, because it will dictate how the ship moves and simulates real life. Unfortunately, a big part of how we implement wind will also depend on the water physics, such as whether the waves caused by wind are handled together, or separately. We will need to figure out how to make the Crest water work, otherwise pivot to figure out another way to make water. Meanwhile, we have gotten started on how the wind will interact with the sails of the ship. We are trying to make the sails responsive by giving them the Cloth Unity component, but that also comes with many challenges to optimize how they move and react.</p>
-
-                    <a href="#">
-                        <img class="img-responsive" src="img/sails.PNG" alt="">
-                    </a>
-
                     <hr>
                     <h4 class="section-heading">- Work Log -</h4>
-                    <p>James: Collecting scripts and functions to provide synchronization of VR and non-VR clients in the same online PUN cloud server.</p>
-                    <p>Patrick: Started implementing wind and sail physics</p>
-                    <p>Abhinav: Tested out Crest system with the Quest, tried optimizations. Experimented with adding buoyancy to Patrick’s ship test within Crest. Tried a few other shader tutorials for water.</p>
+                    <p>James and Julian: researched and prototyped multiplayer for Quest using PUN 2</p>
+                    <p>Abhi: researched and tested methods of simulating water for the environment</p>
+                    <p>Patrick: tested rigging physics to premade ship asset</p>
                     <h4 class="section-heading">- Work Plan -</h4>
-                    <p>Everyone: Work on slide deck and presentation for next Tuesday</p>
-                    <p>Patrick: Continue working on wind/sail, and hopefully steering of ship</p>
-                    <p>Abhinav: Continue trying optimizations for Crest, otherwise divert to less graphically demanding ocean solution. Acquire ship model that will be used, add buoyancy</p>
-                    <p>Julian: Work on basic bird player implementation/networking with PUN2</p>
-                    <p>James: Investigating Remote Procedure Calls (RPC), Lag Compensation, Physics Synchronization in order to manage the interactions between players and larger entities in the world, such as the ship itself.</p>
+                    <p>Patrick and Abhi: acquire and rig final ship asset and add it to water environment. Figure out wind physics for waves and ship movement</p>
+                    <p>James and Julian: work out the kinks with PUN2 networking and get a joinable lobby working, potentially in the environment Patrick and Abhi make.</p>
+                    <p>Everyone: set up app for MVP in Oculus, set up repo for Unity project and sync up VC workflows</p>
                 </div>
             </div>
         </div>

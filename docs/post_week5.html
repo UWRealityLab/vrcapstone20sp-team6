@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Hands on Deck VR - Week 1</title>
+    <title>Hands on Deck VR - Week 5</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -69,14 +69,14 @@
 
     <!-- Page Header -->
     <!-- Set your background image for this header on the line below. -->
-    <header class="intro-header" style="background-image: url('img/magic_leap.jpg')">   <!-- change the post main background image -->
+    <header class="intro-header" style="background-image: url('img/prototyping-bg.png')">   <!-- change the post main background image -->
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                     <div class="post-heading">
-                        <h1>Week 1</h1>
-                        <h2 class="subheading">Team 6 learns about unity and excitedly unbox our VR and AR headsets.</h2>
-                        <span class="meta">Posted by <a href="#">VRcap Team 6</a> on April 10, 2020</span>
+                        <h1>Week 5</h1>
+                        <h2 class="subheading">Team 6 encounters some trouble in the water, but continues to make progress</h2>
+                        <span class="meta">Posted by <a href="#">VRcap Team 6</a> on May 1, 2020</span>
                     </div>
                 </div>
             </div>
@@ -88,50 +88,45 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                    <!-- <p>Never in all their history have men been able truly to conceive of the world as one: a single sphere, a globe, having the qualities of a globe, a round earth in which all the directions eventually meet, in which there is no center because every point, or none, is center — an equal earth which all men occupy as equals. The airman's earth, if free men make it, will be truly round: a globe in practice, not in theory.</p>
 
-                    <p>Science cuts two ways, of course; its products can be used for both good and evil. But there's no turning back from science. The early warnings about technological dangers also come from science.</p>
+                    <h2 class="section-heading">Turbulent Waters</h2>
 
-                    <p>What was most significant about the lunar voyage was not that man set foot on the Moon but that they set eye on the earth.</p>
+                    <p>Water rendering is one of the most important steps for us as we develop Hands on Deck. Currently, we are using Crest Ocean System as our water renderer. Crest renders beautiful scalable oceans with deep customization on the behavior and appearance, which is perfect for immersing our users in the experience. However, due to hardware restrictions with the Oculus Quest we have had some performance difficulties with Crest. In addition, figuring out ship buoyancy in Crest water has a significant learning curve. Focus has shifted to optimizing Crest, but if it’s not possible we will have to look for other rendering solutions since smoothness is a priority, especially when dealing with VR.</p>
 
-                    <p>A Chinese tale tells of some men sent to harm a young girl who, upon seeing her beauty, become her protectors rather than her violators. That's how I felt seeing the Earth for the first time. I could not help but love and cherish her.</p>
+                    <h2 class="section-heading">Multiplayer Synchronicity</h2>
 
-                    <p>For those who have seen the Earth from space, and for the hundreds and perhaps thousands more who will, the experience most certainly changes your perspective. The things that we share in our world are far more valuable than those which divide us.</p> -->
+                    <p>We were successful in prototyping the ability to have multiple camera views for different device platforms present in the same online. Currently we can have desktop and oculus quest clients join, while synchronizing their respective positions and animations in the online environment, referred to as a room in the PUN api documentation.
+                        Now that we are confident in the ability to connect and communicate with clients on different platforms, the focus for developing online interaction will turn to how to organize the clients’ ownership of an object and what we will focus on synchronizing.
+                        The client ownership is a concept that allows only one client at a time to make changes to the transform, or position, of a GameObject in the Unity scene. Implementing the transfer of ownership will be pivotal in allowing clients to hand objects to each other, or even interacting with an object lying in the world, as by default all objects belong to the first person in the PUN room.
+                    </p>
 
-                    <h2 class="section-heading">Learning Unity</h2>             <!-- first topic headding -->
-
-                    <p>The project has started off right where it should, with a healthy amount of Unity tutorials. Our team members are fairly new to Unity and to get things rolling we started with a tutorial called RollaBall, giving us exposure to fundamental unity API functions for working with game objects within the editor.</p>
+                    <!-- @james add the multiplayer video here! ;) -->
                     <a href="#">
-                        <img class="img-responsive" src="img/rollaball.PNG" alt="">
+                        <video width="750"; height: auto; autoplay loop muted inline>
+                          <source src="video/multiplayer_video_002_webClip_zoom.mp4" type="video/mp4">
+                          Your browser does not support the video tag.
+                        </video>
                     </a>
 
-                    <p>After having fun creating our first game in unity we learned how to set up a scene in the editor for various VR/AR platforms via Unity's asset store.</p>
+                    <h2 class="section-heading">Lowering the Sails</h2>
 
-                    <!-- <blockquote>The dreams of yesterday are the hopes of today and the reality of tomorrow. Science has not yet mastered prophecy. We predict too much for the next year and yet far too little for the next ten.</blockquote> -->
-
-                    <h2 class="section-heading">Taking the Leap</h2>
-
-                    <p>The entire team was excited to hear that everyone in the capstone would receive a Magic Leap One to test the capabilities of remote AR collaboration during the pandemic quarantine. It is amazing to have the opportunity to experiment with this technology and potentially incorporate it into our projects.</p>
+                    <p>Wind is going to be an essential part of our experience, because it will dictate how the ship moves and simulates real life. Unfortunately, a big part of how we implement wind will also depend on the water physics, such as whether the waves caused by wind are handled together, or separately. We will need to figure out how to make the Crest water work, otherwise pivot to figure out another way to make water. Meanwhile, we have gotten started on how the wind will interact with the sails of the ship. We are trying to make the sails responsive by giving them the Cloth Unity component, but that also comes with many challenges to optimize how they move and react.</p>
 
                     <a href="#">
-                        <img class="img-responsive" src="img/magic_leap_unbox.jpg" alt="">
+                        <img class="img-responsive" src="img/sails.PNG" alt="">
                     </a>
 
-                    <h2 class="section-heading">Embarking on our Quest</h2>
-
-                    <p>Exploring the Oculus Quest is another first for the team. The mobility and accessibility of the Quest is of great interest to the group and we are excited to how we can use this innovative new frontier of wireless VR in our project.</p>
-
-                    <a href="#">
-                        <img class="img-responsive" src="img/oculus_box.jpg" alt="">
-                    </a>
-                    <span class="caption text-muted">.</span>
-
-                    <h2 class="section-heading">Wind in the Sails</h2>
-
-                    <p>Brainstorming ideas for our project's focus was more difficult than we anticipated having both VR and AR headsets at our disposal. During the initial discussions, it was clear that we wanted to create an application that would allow users to be social with one another and use the XR technologies to bridge the isolation everyone is facing.</p>
-                    <p>During our discussions we discovered a common interest for the outdoors and we are fortunate to live in an area with many beautiful natural features. From the inspiration of the Puget Sound, Hands on Deck, a VR sailing experience, was born.</p>
-                    <p>Team 6 is very excited to be taking on this project and welcomes you to follow us on our development through these blog posts.</p>
-                    <!-- <p>Placeholder text by <a href="http://spaceipsum.com/">Space Ipsum</a>. Photographs by <a href="https://www.flickr.com/photos/nasacommons/">NASA on The Commons</a>.</p> -->
+                    <hr>
+                    <h4 class="section-heading">- Work Log -</h4>
+                    <p>James: Collecting scripts and functions to provide synchronization of VR and non-VR clients in the same online PUN cloud server.</p>
+                    <p>Patrick: Started implementing wind and sail physics</p>
+                    <p>Abhinav: Tested out Crest system with the Quest, tried optimizations. Experimented with adding buoyancy to Patrick’s ship test within Crest. Tried a few other shader tutorials for water.</p>
+                    <h4 class="section-heading">- Work Plan -</h4>
+                    <p>Everyone: Work on slide deck and presentation for next Tuesday</p>
+                    <p>Patrick: Continue working on wind/sail, and hopefully steering of ship</p>
+                    <p>Abhinav: Continue trying optimizations for Crest, otherwise divert to less graphically demanding ocean solution. Acquire ship model that will be used, add buoyancy</p>
+                    <p>Julian: Work on basic bird player implementation/networking with PUN2</p>
+                    <p>James: Investigating Remote Procedure Calls (RPC), Lag Compensation, Physics Synchronization in order to manage the interactions between players and larger entities in the world, such as the ship itself.</p>
                 </div>
             </div>
         </div>

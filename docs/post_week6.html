@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Hands on Deck VR - Week 6</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Theme CSS -->
+    <link href="css/clean-blog.min.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    Menu <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand" href="index.html">Hands on Deck</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="index.html">Home</a>
+                    </li>
+                    <li>
+                        <a href="about.html">About</a>
+                    </li>
+                    <li>
+                        <a href="post.html">Sample Post</a>
+                    </li>
+                    <li>
+                        <a href="contact.html">Contact</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Page Header -->
+    <!-- Set your background image for this header on the line below. -->
+    <header class="intro-header" style="background-image: url('img/prototyping-bg.png')">   <!-- change the post main background image -->
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="post-heading">
+                        <h1>Week 6</h1>
+                        <h2 class="subheading">Team 6’s sails are up, and strong winds are approaching</h2>
+                        <span class="meta">Posted by <a href="#">VRcap Team 6</a> on May 8, 2020</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Post Content -->
+    <article>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+
+                    <h2 class="section-heading">Turn to Port and Set Sail! (Ship Mechanics)</h2>
+
+                    <p>While working on the ship sailing mechanics we had great results using Unity’s Rigidbody physics, the ship would coast realistically using the AddForce command, giving us the slight drifting motion that would be fitting for a water bound craft. Unfortunately, we ran into issues once we attempted to have players and objects onboard. Every object needed to have a Rigidbody component otherwise they would fall through the ship, players included. Enabling Rigidbody worked for objects, but players would slide around and eventually go overboard.
+                    For now we are implementing a technique to limit the amount of physics involved by having the ship and its contents remain stable and move the environment around the boat. This method may not be our final implementation, but allows for us to solve more important issues, such as testing the server limits on player physics interactions. Using a ship controller script, the environment provides a wind direction vector and speed, and the ship responds to that wind information by taking in values from the ship helm (wheel) which controls the “rudder” making the ship drift left or right. Currently, the ship can not turn (it only rotates) as a result of how we handled the large environment, coupled with the design decision to move the world and not the ship. These have led to complications that we are trying to work out so the physics does not toss all players and items onboard around as the ship pivots. We can pivot the world, but the landscape uses a tile system and this does not respond the way we imagined, even when all the tile pieces are the child of a single parent object.</p>
+
+                    <h2 class="section-heading">More Hands Make Less Work (Multiplayer)</h2>
+
+                    <p>Building from last week’s player position and animation synchronicity, we set sail towards implementing VR interactive object synchronicity as well. PUN offers basic scripts for syncing rigidbody features and object transformations between clients, and after a little bit of extra effort, we managed to implement basic object ownership transferring between clients when they begin interaction with the objects, properly allowing different players to sync their interactions with objects between different player instances. While we the main concepts figured out, some fine tuning is still necessary for perfectly synced objects.
+                        With this next step in multiplayer synchronicity complete, we can now plot out our course for ship wide synchronicity. Future effort should not have to be bottlenecked by our understanding of PUN, and instead we can focus on new challenges like ship movement across the world in relation to object and player placement aboard the ship.                        
+                    </p>
+
+                    <h2 class="section-heading">As Far As The Eye Can “Sea”</h2>
+
+                    <p></p>
+
+                    <h2 class="section-heading">Land Ho!</h2>
+
+                    <p>We were originally by the Puget Sound when starting this product and wanted to have environments that have a realistic feel. Discovering a tool called L3DT, the Large 3D Terrain Generator, we were able to get a height map and texture map to import into Unity. Within the editor, the large terrain is broken up into smaller tiles. With a script attached to a player, tiles sections that are far away are not rendered, saving on rendering overhead.</p>
+
+                    <hr>
+                    <h4 class="section-heading">- Work Log -</h4>
+                    <p>Everyone: Presented MVP progress in lecture on Tuesday and prepared for Thursday’s demo in lab</p>
+                    <p>James: Found tutorial on handling large scale environments and created first prototype environment. Created basic ship controller script for sailing mechanics incorporating wind speed, wind direction, ship heading, and placeholder value for the amount of sails (unfurled sails to catch the wind). Created these placeholder assets to develop the correct world building approach to reserve the most network and processing overhead we can get from the quest.</p>
+                    <p>Patrick: Created slides and videos for Tuesday’s presentation and contributed to the ship’s steering wheel mechanics as well as grabbing objects</p>
+                    <p>Abhinav: </p>
+                    <p>Julian: Implemented functioning interactive object synchronicity between players through ownership transferring. Built upon prior investigation in Remote Procedure Call usage and network optimization research.</p>
+                    <h4 class="section-heading">- Work Plan -</h4>
+                    <p>Everyone: Re-research assets and pick ones for the project going forwards, rebuild ship frontend using new assets and migrate backend</p>
+                    <p>James: Continue to work on how to handle the large landscapes as we implement the synchronization scripts for all objects in the scene, the ship, and the environment.
+                        Work on more in-game mechanical devices such as hand cranks, ropes, and a boarding plank.
+                    </p>
+                    <p>Patrick: Rebuild ship frontend on new ship asset and implementing more realistic representations of sailing mechanics, from being able to raise/lower the sails, to using ropes to change their directions.</p>
+                    <p>Abhinav: </p>
+                    <p>Julian: Dive into ship movement interaction: See how feasible it is to have something in the like of a rigidbody implementation for the ship, or if the scene should continue to transform around the ship. Apply PUN object interaction functionality to ship interactables. Fine tune the accuracy of object placement synchronicity.</p>
+                </div>
+            </div>
+        </div>
+    </article>
+
+    <hr>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <ul class="list-inline text-center">
+                        <li>
+                            <a href="#">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                    <p class="copyright text-muted">Copyright &copy; Your Website 2016</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- jQuery -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Contact Form JavaScript -->
+    <script src="js/jqBootstrapValidation.js"></script>
+    <script src="js/contact_me.js"></script>
+
+    <!-- Theme JavaScript -->
+    <script src="js/clean-blog.min.js"></script>
+
+</body>
+
+</html>

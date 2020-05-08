@@ -69,14 +69,14 @@
 
     <!-- Page Header -->
     <!-- Set your background image for this header on the line below. -->
-    <header class="intro-header" style="background-image: url('img/prototyping-bg.png')">   <!-- change the post main background image -->
+    <header class="intro-header" style="background-image: url('img/home-bg-sailing.jpg')">   <!-- change the post main background image -->
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                     <div class="post-heading">
                         <h1>Week 3</h1>
-                        <h2 class="subheading">Team 6 gets our hands dirty, learning and testing core project mechanics in Unity.</h2>
-                        <span class="meta">Posted by <a href="#">VRcap Team 6</a> on April 24, 2020</span>
+                        <h2 class="subheading">Team 6 pitches Hands on Deck, publishes Project Requirements Document and plots a course for development.</h2>
+                        <span class="meta">Posted by <a href="#">VRcap Team 6</a> on April 17, 2020</span>
                     </div>
                 </div>
             </div>
@@ -89,48 +89,63 @@
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
 
-                    <h2 class="section-heading">Learning the Ropes</h2>
+                    <h2 class="section-heading">Project (Prop) Pitch</h2>             <!-- first topic headding -->
 
-                    <p>This week, we split off to start researching and prototyping different aspects of the MVP for Hands on Deck, and at the same time familiarizing ourselves with Unity and developing on the Oculus Quest. </p>
+                    <p>We created our project pitch video and presented the idea to our peers. While creating the pitch outline we considered the level of detail we wanted to deliver. With the feedback of our peers and course staff, our team was able to paint a clearer picture of what could be accomplished for our Minimum Viable Product (MVP):</p>
 
-                    <q>There were three main areas of the MVP that we experimented with this week: multiplayer, ship mechanics, and water physics. James and Julian teamed up to tackle multiplayer while Patrick helmed the ship and Abhinav dove into water.</q>
+                    <q>A scene capable of holding 2-4 players featuring a boat with functioning sails, anchor, and helm that displays the points of sail concept.</q>
 
-                    <h2 class="section-heading">Protohype (PUN Intended)</h2>
-
-                    <p>After doing some research on the options for multiplayer Quest development, we found Photon Unity Networking (PUN) 2 to be the most promising. It's been used by a variety of established developers and has the most documentation and tutorials. Unfortunately, the rapid changes to Quest development as a whole have made many tutorials out of date and inaccurate, which has made getting a working prototype challenging. In addition, once we found a tutorial we could follow we encountered a bug where one VR camera rig would steal the view for all players. Despite these roadblocks, we were able to pull together a scene where 2 people could run around and shoot lasers at each other. While this doesn't have anything to do with sailing, it is progress.</p>
-
+                    <br>
+                    <br>
                     <a href="#">
-                        <img class="img-responsive" src="img/Photon_PUN_Multi.PNG" alt="">
+                        <img class="img-responsive" src="img/points.gif" alt="a diagram outlining the concept of points of sail, with boats pointing in each direction">
                     </a>
 
-                    <h2 class="section-heading">Ship-Shape</h2>
+                    <p>A diagram of the points of sail is above, outlining the mechanic of maintaining the direction of a craft in relation to the wind by directing the sail accordingly. Additionally, we will have the baseline aesthetic and lighting for the low-poly art style featuring convincing water with a few placeholder islands as landmarks to gauge the sailing mechanics.</p>
 
-                    <p>While we're excited to start acquiring and modeling assets for Hands on Deck, we first need to get an idea of how to properly set up imported assets in a project. Fortunately for testing, there are a number of free assets on the Unity Asset Store, so we selected a fitting colonial ship as the prototype. We set up a scene, rigged the ship with the proper physics components, and were able to get a player to move around on the deck in the Quest and bump into parts that should be bumped into. A good start then.</p>
+                    <p>For more information about our project, please check out the pitch video is available on the home page of our website along with the Product Requirements Document.</p>
 
-                    <a href="#">
-                        <img class="img-responsive" src="img/ship-test.PNG" alt="">
-                    </a>
+                    <!-- <blockquote>The dreams of yesterday are the hopes of today and the reality of tomorrow. Science has not yet mastered prophecy. We predict too much for the next year and yet far too little for the next ten.</blockquote> -->
 
-                    <h2 class="section-heading">Go With the Flow</h2>
+                    <!-- <h2 class="section-heading">Asset Management</h2> 
 
-                    <p>Since Hands on Deck users are going to be looking out at the seas for a sizeable portion of the experience, it is vital to make the water realistic and dynamic. Initially, we tried to go for a more simplistic take considering the Quest's graphical limitations. We found a tutorial on how to create a water plane using the ShaderGraph and Lightweight Render Pipeline packages. We followed it, but while the water had decent movement and color, the waves were "pointy," the ripples looked more like a swimming pool, and it didn't seem like this method would scale. So, we looked onward for more ocean-worthy methods and stumbled upon a fantastic open source ocean generation system, Crest. It looks great, has good performance, decent documentation, and customization for waves, foam, color, reflectivity, and more. This might just be exactly what we're looking for.</p>
-                    
-                    <a href="#">
-                        <video width="750"; height: auto; autoplay loop muted inline>
-                          <source src="video/crest-test.mp4" type="video/mp4">
-                          Your browser does not support the video tag.
-                        </video>
-                    </a>
+                    <p>A major decision for the team was to focus on the multiplayer features, UI system to communicate effectivly with players, and the player interactions themselves. This decision has lead the team to offset as much as the assest production as possible. While we believe that we could build most of the modeling assests out, collecting what assests we can purchase and then modify for our means will ensure a more polished product on the development pillers we established.</p>
+                    -->
+
+                    <!-- <a href="#">
+                        <img class="img-responsive" src="img/magic_leap_unbox.jpg" alt="">
+                    </a> -->
+
+                    <h2 class="section-heading">Pulling out of the Docks</h2>
+
+                    <!-- <p>Now with a roadmap in front of us, team 6 is prototyping the multiplayer features and the player interactions. Once we are satisfied we will focus on the UI and produce the ship and water assests as we work towards our MVP goals.</p>-->
+                    <p>With the Project Requirements Document complete, we now had a roadmap in front of us. We will be hard at work doing research and starting on a barebones prototype for our MVP.</p>
 
                     <hr>
                     <h4 class="section-heading">- Work Log -</h4>
-                    <p>James and Julian: researched and prototyped multiplayer for Quest using PUN 2</p>
-                    <p>Abhi: researched and tested methods of simulating water for the environment</p>
-                    <p>Patrick: tested rigging physics to premade ship asset</p>
+                    <p>Patrick: Wrote and formatted PRD and revised blog posts, researched Unity interactions and assets</p>
+                    <p>James: Wrote risks for PRD, edited PRD, wrote blog post, researched networking software and assets</p>
+                    <p>Abhi: Edited PRD, researched assets</p>
+                    <p>Julian: Edited PRD, researched assets</p>
                     <h4 class="section-heading">- Work Plan -</h4>
-                    <p>Patrick and Abhi: acquire and rig final ship asset and add it to water environment. Figure out wind physics for waves and ship movement</p>
-                    <p>James and Julian: work out the kinks with PUN2 networking and get a joinable lobby working, potentially in the environment Patrick and Abhi make.</p>
-                    <p>Everyone: set up app for MVP in Oculus, set up repo for Unity project and sync up VC workflows</p>
+                    <p>Patrick: Load basic ship model into Unity and start working on basic sailing/water physics</p>
+                    <p>Abhi: Load basic ship model into Unity and start working on basic sailing/water physics</p>
+                    <p>James: Research and work on implementing basic networking sample where two users can interact</p>
+                    <p>Julian: Research and work on implementing basic networking sample where two users can interact</p>
+
+                    <!-- <a href="#">
+                        <img class="img-responsive" src="img/oculus_box.jpg" alt="">
+                    </a>
+                    <span class="caption text-muted">.</span> -->
+
+                    <!--
+
+                    <h2 class="section-heading">Wind in the sails</h2>
+
+                    <p>Brainstorming ideas for our project's focus was more difficult than we anticipated having both VR and AR headsets at our disposal. During the initial discussions, it was clear that we wanted to create an application that would allow users to be social with one anther and use the XR technologies to bridge the isolation that now effects everyone.</p>
+                    <p>During our discussions we discovered a common liking for the outdoors and we are fortunate to live in an area with many beautiful natural features. From the inspiration of the Puget Sound, Hands on Deck was born.</p>
+                    <p>Team 6 is very excited to be taking on this project and what we can accomplish with it.</p> -->
+                    <!-- <p>Placeholder text by <a href="http://spaceipsum.com/">Space Ipsum</a>. Photographs by <a href="https://www.flickr.com/photos/nasacommons/">NASA on The Commons</a>.</p> -->
                 </div>
             </div>
         </div>

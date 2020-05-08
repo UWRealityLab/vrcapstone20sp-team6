@@ -91,13 +91,46 @@
 
                     <h2 class="section-heading">Turn to Port and Set Sail! (Ship Mechanics)</h2>
 
-                    <p>While working on the ship sailing mechanics we had great results using Unity’s Rigidbody physics, the ship would coast realistically using the AddForce command, giving us the slight drifting motion that would be fitting for a water bound craft. Unfortunately, we ran into issues once we attempted to have players and objects onboard. Every object needed to have a Rigidbody component otherwise they would fall through the ship, players included. Enabling Rigidbody worked for objects, but players would slide around and eventually go overboard.
-                    For now we are implementing a technique to limit the amount of physics involved by having the ship and its contents remain stable and move the environment around the boat. This method may not be our final implementation, but allows for us to solve more important issues, such as testing the server limits on player physics interactions. Using a ship controller script, the environment provides a wind direction vector and speed, and the ship responds to that wind information by taking in values from the ship helm (wheel) which controls the “rudder” making the ship drift left or right. Currently, the ship can not turn (it only rotates) as a result of how we handled the large environment, coupled with the design decision to move the world and not the ship. These have led to complications that we are trying to work out so the physics does not toss all players and items onboard around as the ship pivots. We can pivot the world, but the landscape uses a tile system and this does not respond the way we imagined, even when all the tile pieces are the child of a single parent object.</p>
+                    <p>While working on the ship sailing mechanics we had great results using Unity’s Rigidbody physics, the ship would coast realistically using the AddForce command, giving us the slight drifting motion that would be fitting for a water bound craft.</p>
+
+                    <a href="#">
+                        <video width="750"; height: auto; autoplay loop muted inline>
+                          <source src="video/midterm_presentation_edited_2.mp4" type="video/mp4">
+                          Your browser does not support the video tag.
+                        </video>
+                    </a>
+
+                    <p>Unfortunately, we ran into issues once we attempted to have players and objects onboard. Every object needed to have a Rigidbody component otherwise they would fall through the ship, players included.</p>
+
+                    <p>Enabling Rigidbody worked for objects, but players would slide around and eventually go overboard.
+                    For now we are implementing a technique to limit the amount of physics involved by having the ship and its contents remain stable and move the environment around the boat. This method may not be our final implementation,
+                    but allows for us to solve more important issues, such as testing the server limits on player physics interactions. Using a ship controller script, the environment provides a wind direction vector and speed, and the ship responds to that wind information by taking in values from the ship helm (wheel) which controls the “rudder” making the ship drift left or right.
+                    Currently, the ship can not turn (it only rotates) as a result of how we handled the large environment, coupled with the design decision to move the world and not the ship.</p>
+
+                    <a href="#">
+                        <video width="750"; height: auto; autoplay loop muted inline>
+                          <source src="video/midterm_presentation_edited_1.mp4" type="video/mp4">
+                          Your browser does not support the video tag.
+                        </video>
+                    </a>
+
+                    <p>These have led to complications that we are trying to work out so the physics does not toss all players and items onboard around as the ship pivots.
+                    We can pivot the world, but the landscape uses a tile system and this does not respond the way we imagined, even when all the tile pieces are the child of a single parent object.</p>
 
                     <h2 class="section-heading">More Hands Make Less Work (Multiplayer)</h2>
 
-                    <p>Building from last week’s player position and animation synchronicity, we set sail towards implementing VR interactive object synchronicity as well. PUN offers basic scripts for syncing rigidbody features and object transformations between clients, and after a little bit of extra effort, we managed to implement basic object ownership transferring between clients when they begin interaction with the objects, properly allowing different players to sync their interactions with objects between different player instances. While we the main concepts figured out, some fine tuning is still necessary for perfectly synced objects.
-                        With this next step in multiplayer synchronicity complete, we can now plot out our course for ship wide synchronicity. Future effort should not have to be bottlenecked by our understanding of PUN, and instead we can focus on new challenges like ship movement across the world in relation to object and player placement aboard the ship.                        
+                    <p>Building from last week’s player position and animation synchronicity, we set sail towards implementing VR interactive object synchronicity as well. PUN offers basic scripts for syncing rigidbody features and object transformations between clients,
+                      and after a little bit of extra effort, we managed to implement basic object ownership transferring between clients when they begin interaction with the objects, properly allowing different players to sync their interactions with objects between different player instances.</p>
+
+                    <a href="#">
+                        <video width="750"; height: auto; autoplay loop muted inline>
+                          <source src="video/multiplayer_video_003_1.mp4" type="video/mp4">
+                          Your browser does not support the video tag.
+                        </video>
+                    </a>
+
+                    <p>While we the main concepts figured out, some fine tuning is still necessary for perfectly synced objects.
+                        With this next step in multiplayer synchronicity complete, we can now plot out our course for ship wide synchronicity. Future effort should not have to be bottlenecked by our understanding of PUN, and instead we can focus on new challenges like ship movement across the world in relation to object and player placement aboard the ship.
                     </p>
 
                     <h2 class="section-heading">As Far As The Eye Can “Sea”</h2>
@@ -106,7 +139,19 @@
 
                     <h2 class="section-heading">Land Ho!</h2>
 
-                    <p>We were originally by the Puget Sound when starting this product and wanted to have environments that have a realistic feel. Discovering a tool called L3DT, the Large 3D Terrain Generator, we were able to get a height map and texture map to import into Unity. Within the editor, the large terrain is broken up into smaller tiles. With a script attached to a player, tiles sections that are far away are not rendered, saving on rendering overhead.</p>
+                    <p>We were originally by the Puget Sound when starting this product and wanted to have environments that have a realistic feel.</p>
+
+                    <a href="#">
+                        <img class="img-responsive" src="img/l3dt_texturemap.PNG" alt="">
+                    </a>
+
+                    <p>Discovering a tool called L3DT, the Large 3D Terrain Generator, we were able to get a height map and texture map to import into Unity.</p>
+
+                    <a href="#">
+                        <img class="img-responsive" src="img/l3dt_heightfield.PNG" alt="">
+                    </a>
+
+                    <p>Within the editor, the large terrain is broken up into smaller tiles. With a script attached to a player, tiles sections that are far away are not rendered, saving on rendering overhead.</p>
 
                     <hr>
                     <h4 class="section-heading">- Work Log -</h4>

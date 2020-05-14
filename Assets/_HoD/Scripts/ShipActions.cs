@@ -37,19 +37,7 @@ namespace Com.Udomugo.HoD
 
         void Anchor()
         {
-            if (anchorDown) {
-                while (crank.quaternion.y < 270) {
-                    crank.transform.Rotate(0, crank.quaternion.y + 5, 0);
-                }
-                anchor.transform.position.y = crank.transform.position.y;
-                anchorDown = false;
-            } else {
-                while (crank.quaternion.y > 0) {
-                    crank.transform.Rotate(0, crank.quaternion.y - 5, 0);
-                }
-                anchor.transform.position.y = crank.transform.position.y - 200;
-                anchorDown = true;
-            }
+            anchorDown = !anchorDown;
         }
 
         void Port()
@@ -60,6 +48,17 @@ namespace Com.Udomugo.HoD
         void Star()
         {
 
+        }
+
+        void Update()
+        {
+            if (anchorDown && crank.transform.rotation.y < 270) {
+                crank.transform.localEulerAngles = new Vector3(0f, crank.transform.rotation.y + 5, 0f);
+                anchor.transform.localPosition = new Vector3(anchor.transform.position.x, crank.transform.position.y, anchor.transform.position.z);
+            } else if (crank.transform.rotation.y > 0) {
+                crank.transform.localEulerAngles = new Vector3(0f, crank.transform.rotation.y - 5, 0f);
+                anchor.transform.localPosition = new Vector3(anchor.transform.position.x, crank.transform.position.y - 200, anchor.transform.position.z);
+            }
         }
 
     }

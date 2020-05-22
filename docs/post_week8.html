@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Hands on Deck VR - Week 7</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Theme CSS -->
+    <link href="css/clean-blog.min.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    Menu <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand" href="index.html">Hands on Deck</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="index.html">Home</a>
+                    </li>
+                    <li>
+                        <a href="about.html">About</a>
+                    </li>
+                    <li>
+                        <a href="post.html">Sample Post</a>
+                    </li>
+                    <li>
+                        <a href="contact.html">Contact</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Page Header -->
+    <!-- Set your background image for this header on the line below. -->
+    <header class="intro-header" style="background-image: url('img/new_world.png')">   <!-- change the post main background image -->
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="post-heading">
+                        <h1>Week 7</h1>
+                        <h2 class="subheading">Focuses on final demo build</h2>
+                        <span class="meta">Posted by <a href="#">VRcap Team 6</a> on May 22, 2020</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Post Content -->
+    <article>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+
+                    <h2 class="section-heading">Interactions Galore</h2>
+
+                    <p>Interactions are a big part of our target demo experience. We have already tackled the interaction with the ship wheel for our MVP as well as the anchor last week.
+                      This week we continued to work on refining those interactions, as well as implementing the following new ones: raising/lowering sails, bracing sails, and the hoist system to move crates.
+                      We chose to implement these interactions through a UI menu rather than physically with ropes (at least for now) because we feel that the menu provides more convenient access.
+                      If time permits, we will consider making these interactions more physical, which should not take too much more work since we have the consequences implemented already.</p>
+
+                    <a href="#">
+                        <img class="img-responsive" src="img/ship_interactions.png" alt="">
+                    </a>
+
+                    <p>We ran into a couple bugs, however, due to the purchased ship model having origins for individual parts not precisely in the center of each part. This led to issues in rotation for the bracing interaction, as well as bounding boxes being improperly located for the sails  when adding a cloth component to them. We were able to fix the rotation issue by going back into the model in Maya and performing the union boolean on all the parts of the mast to make it one object with a central origin. Unfortunately we cannot do the same for the sails as the issue only arises when the cloth component is added. We tried to fix it using the ProBuilder tools, which allows us to center the pivots, however this required a MeshRenderer which conflicted with the SkinnedMeshRenderer which is necessary for the cloth component. We will continue to attempt to fix this bug going forward next week.</p>
+
+                    <p>We also made progress on the hoist system, modeling our own custom asset for a simple hoist and platform. Our target for next week is modeling the crates to go along with this hoist and make animations for the hoist raising and lowering for the interaction.</p>
+
+                    <h2 class="section-heading">Remodeling the World</h2>
+
+                    <p>Having gone back to the drawing board after discovering the limitations in place on the Unity Terrain Engine for optimization during runtime. We found some low poly models to replace the full tiled terrain. WIth the environment assets now consisting of polygon models, we can not only translate, but rotate the environment. While re-prototyping the world, we also discovered that the values used for rotation in the Unity inspector are misleading, they are not he float values stored in a rotation object, called a Quaternion, but a relation of two or more floating point values that create the rotational angle about an axis. This will require up to rethink a few of the core sailing mechanics to properly translate the sail trim, rudder position, and ship speed to values that correctly move the world in response.</p>
+
+                    <a href="#">
+                        <img class="img-responsive" src="img/world_model.PNG" alt="">
+                    </a>
+
+                    <p>Now that we have a world rotation mechanic we will have to deal with the view distance limit of the Oculus Quest to prevent pop-in or dynamic rendering of only part of the landscape as it comes into view. We have an idea or using a fog or a mirage effect.
+                      The end goal being that landscapes look as if they are coming over the horizon.</p>
+
+                    <h2 class="section-heading">Destination: Interesting</h2>
+
+                    <p>Most of the work has been focused on the ship assets and the backend for multiplayer interactions and sailing mechanics. With these components becoming more robust we can turn our attention to the aesthetics of the environment. Currently we want to have a few destination types, an island resort and a harbor to start. These are going to be caricatures, meaning low modeling detail with focus on features that make them simple to identify, but still add to the overall appeal of the environment.</p>
+
+                    <h2 class="section-heading">Sailing in Sound</h2>
+
+                    <p>Now is a great time to add another dimension to our experience: audio. We found sounds for the water, wind, sails, ship, and more that we can add to Hands on Deck. A tutorial showed us how to create an Audio Manager script that we can use to keep all of our sound components under one GameObject, simplifying adding, removing, and replacing sound effects. Some adjustments to the script allow us to make any GameObject a source so that we can implement 3D spatial audio. In addition, we are looking into adding voice chat through Photon Voice 2, the same service we use for multiplayer, so that users of the app won’t have to rely on a third party app for communication. We have run into some difficulties with finding tutorials and thorough documentation, so some discovery is in order. All in all, we’re hoping this new element to Hands on Deck will greatly enhance the experience.</p>
+
+
+
+                    <hr>
+                    <h4 class="section-heading">- Work Log -</h4>
+
+                    <p>James: Reworked world modeling component and worked on ship sailing mechanics. Collected assets for low poly environments to replace use of Unity terrain objects.</p>
+                    <p>Patrick: Finished moving progress onto new ship model. Implemented raise/lower sail, brace sail interactions, and modeled a hoist system for the cargo transportation idea.</p>
+                    <p>Abhinav: </p>
+                    <p>Julian: </p>
+                    <h4 class="section-heading">- Work Plan -</h4>
+
+                    <p>James: Add center of mass calculations to world model for increased boat drift. Build at least 3 points of interest destinations. Layout basic gameplay mechanics and improve VR avatar.</p>
+                    <p>Patrick: Fix cloth bug on new ship sails. Model crates, make animations for hoist interaction.</p>
+                    <p>Abhinav: </p>
+                    <p>Julian: </p>
+                </div>
+            </div>
+        </div>
+    </article>
+
+    <hr>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <ul class="list-inline text-center">
+                        <li>
+                            <a href="#">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                    <p class="copyright text-muted">Copyright &copy; Your Website 2016</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- jQuery -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Contact Form JavaScript -->
+    <script src="js/jqBootstrapValidation.js"></script>
+    <script src="js/contact_me.js"></script>
+
+    <!-- Theme JavaScript -->
+    <script src="js/clean-blog.min.js"></script>
+
+</body>
+
+</html>

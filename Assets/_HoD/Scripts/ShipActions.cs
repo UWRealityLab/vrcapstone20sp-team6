@@ -17,6 +17,14 @@ namespace Com.Udomugo.HoD
         public bool anchorDown;
         [SerializeField]
         public Transform anchor;
+        [SerializeField]
+        public bool sailsDown;
+        [SerializeField]
+        public List<GameObject> mainSails;
+        [SerializeField]
+        public List<GameObject> mizzenSails;
+        [SerializeField]
+        public List<Transform> mastAndSails;
 
         void Start()
         {
@@ -26,13 +34,33 @@ namespace Com.Udomugo.HoD
             DebugUIBuilder.instance.AddButton("Weigh Anchor/Anchor", () => Anchor());
             DebugUIBuilder.instance.AddButton("Brace Portside", () => Port());
             DebugUIBuilder.instance.AddButton("Brace Starboard", () => Star());
+            DebugUIBuilder.instance.AddButton("Brace Normal", () => Norm());
 
             DebugUIBuilder.instance.Show();
         }
 
         void RaiseLowerSails()
         {
-            
+            sailsDown = !sailsDown;
+            if (sailsDown) {
+                foreach (GameObject mainSail in mainSails) {
+                    // mainSail.active = true;
+                    mainSail.GetComponent<SkinnedMeshRenderer>().enabled = true;
+                }
+                foreach (GameObject mizzenSail in mizzenSails) {
+                    // mizzenSail.active = true;
+                    mizzenSail.GetComponent<SkinnedMeshRenderer>().enabled = true;
+                }
+            } else {
+                foreach (GameObject mainSail in mainSails) {
+                    // mainSail.active = false;
+                    mainSail.GetComponent<SkinnedMeshRenderer>().enabled = false;
+                }
+                foreach (GameObject mizzenSail in mizzenSails) {
+                    // mizzenSail.active = false;
+                    mizzenSail.GetComponent<SkinnedMeshRenderer>().enabled = false;
+                }
+            }
         }
 
         void Anchor()
@@ -42,22 +70,31 @@ namespace Com.Udomugo.HoD
 
         void Port()
         {
-
+            foreach (Transform mastOrSail in mastAndSails) {
+                mastOrSail.transform.localEulerAngles = new Vector3(0f, -45f, 0f);
+            }
         }
 
         void Star()
         {
+            foreach (Transform mastOrSail in mastAndSails) {
+                mastOrSail.transform.localEulerAngles = new Vector3(0f, 45f, 0f);
+            }
+        }
 
+        void Norm()
+        {
+            foreach (Transform mastOrSail in mastAndSails) {
+                mastOrSail.transform.localEulerAngles = new Vector3(0f, 0f, 0f);
+            }
         }
 
         void Update()
         {
             if (anchorDown && crank.transform.rotation.y < 270) {
-                crank.transform.localEulerAngles = new Vector3(0f, crank.transform.rotation.y + 5, 0f);
-                anchor.transform.localPosition = new Vector3(anchor.transform.position.x, crank.transform.position.y, anchor.transform.position.z);
+                crank.transform.localEulerAngles = new Vector3(0f, crank.transform.rotation.y + 2, 0f);
             } else if (crank.transform.rotation.y > 0) {
-                crank.transform.localEulerAngles = new Vector3(0f, crank.transform.rotation.y - 5, 0f);
-                anchor.transform.localPosition = new Vector3(anchor.transform.position.x, crank.transform.position.y - 200, anchor.transform.position.z);
+                crank.transform.localEulerAngles = new Vector3(0f, crank.transform.rotation.y - 2, 0f);
             }
         }
 

@@ -204,6 +204,254 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &955322262
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 955322264}
+  - component: {fileID: 955322263}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &955322263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 955322262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b4b5f7a2d044794aa2eef615d561e11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: ocean_waves
+    clip: {fileID: 8300000, guid: 88b775ce399dfbf4489a1c09a2351e62, type: 3}
+    parent: {fileID: 0}
+    volume: 1
+    pitch: 1
+    loop: 1
+    playOnAwake: 1
+    playMultiple: 0
+    spatialBlend: 0.2
+    minDistance: 1
+    maxDistance: 500
+    source: {fileID: 0}
+  - name: ocean_bg_static
+    clip: {fileID: 8300000, guid: 46f25056488c321418068006b2377b4b, type: 3}
+    parent: {fileID: 0}
+    volume: 1
+    pitch: 1
+    loop: 1
+    playOnAwake: 1
+    playMultiple: 0
+    spatialBlend: 0.2
+    minDistance: 1
+    maxDistance: 500
+    source: {fileID: 0}
+  - name: splash_calm
+    clip: {fileID: 8300000, guid: 743deadb7e0d38a46a89517bd6c2ad3c, type: 3}
+    parent: {fileID: 0}
+    volume: 1
+    pitch: 1
+    loop: 1
+    playOnAwake: 0
+    playMultiple: 0
+    spatialBlend: 0.7
+    minDistance: 1
+    maxDistance: 500
+    source: {fileID: 0}
+  - name: splash_rough
+    clip: {fileID: 8300000, guid: 08af4234515f7394a8e7ccacf6b37b61, type: 3}
+    parent: {fileID: 0}
+    volume: 1
+    pitch: 1
+    loop: 1
+    playOnAwake: 0
+    playMultiple: 0
+    spatialBlend: 0.7
+    minDistance: 1
+    maxDistance: 500
+    source: {fileID: 0}
+  - name: splash_rough
+    clip: {fileID: 8300000, guid: 08af4234515f7394a8e7ccacf6b37b61, type: 3}
+    parent: {fileID: 0}
+    volume: 1
+    pitch: 1
+    loop: 1
+    playOnAwake: 0
+    playMultiple: 0
+    spatialBlend: 0.7
+    minDistance: 1
+    maxDistance: 500
+    source: {fileID: 0}
+  - name: wind_calm
+    clip: {fileID: 8300000, guid: e18da4fac2ad70346b15e0ee799ece8b, type: 3}
+    parent: {fileID: 0}
+    volume: 0.7
+    pitch: 1
+    loop: 1
+    playOnAwake: 1
+    playMultiple: 0
+    spatialBlend: 0
+    minDistance: 0
+    maxDistance: 0
+    source: {fileID: 0}
+  - name: wind_rough
+    clip: {fileID: 8300000, guid: 475a7c5585a3ead4391be07b44d19072, type: 3}
+    parent: {fileID: 0}
+    volume: 0.7
+    pitch: 1
+    loop: 1
+    playOnAwake: 0
+    playMultiple: 0
+    spatialBlend: 0
+    minDistance: 0
+    maxDistance: 0
+    source: {fileID: 0}
+  - name: sail_flap
+    clip: {fileID: 8300000, guid: 9cfa73a61e63a7f44aa28352b8d1895f, type: 3}
+    parent: {fileID: 0}
+    volume: 1
+    pitch: 1
+    loop: 1
+    playOnAwake: 0
+    playMultiple: 0
+    spatialBlend: 0.8
+    minDistance: 1
+    maxDistance: 500
+    source: {fileID: 0}
+  - name: sail_deploy_1
+    clip: {fileID: 8300000, guid: a5dd01c8bd5faa046933ca266254afd2, type: 3}
+    parent: {fileID: 0}
+    volume: 1
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    playMultiple: 1
+    spatialBlend: 0.8
+    minDistance: 1
+    maxDistance: 500
+    source: {fileID: 0}
+  - name: sail_deploy_2
+    clip: {fileID: 8300000, guid: 9bed532d6bd6a504fac9d1fc95fb897d, type: 3}
+    parent: {fileID: 0}
+    volume: 1
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    playMultiple: 1
+    spatialBlend: 0.8
+    minDistance: 1
+    maxDistance: 500
+    source: {fileID: 0}
+  - name: creak_short
+    clip: {fileID: 8300000, guid: adc3a833ad2755748b45d1ba288dc4f2, type: 3}
+    parent: {fileID: 0}
+    volume: 1
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    playMultiple: 1
+    spatialBlend: 0.7
+    minDistance: 1
+    maxDistance: 500
+    source: {fileID: 0}
+  - name: creak_med
+    clip: {fileID: 8300000, guid: b0e20e97ec618614e88b0d091b8c8a47, type: 3}
+    parent: {fileID: 0}
+    volume: 1
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    playMultiple: 1
+    spatialBlend: 0.7
+    minDistance: 1
+    maxDistance: 500
+    source: {fileID: 0}
+  - name: creak_long
+    clip: {fileID: 8300000, guid: 34d2968f8f176c24883a98a64676756d, type: 3}
+    parent: {fileID: 0}
+    volume: 1
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    playMultiple: 1
+    spatialBlend: 0.7
+    minDistance: 1
+    maxDistance: 500
+    source: {fileID: 0}
+  - name: creak_vlong
+    clip: {fileID: 8300000, guid: 2131bfa7159271c43966b9ff02f6c3a1, type: 3}
+    parent: {fileID: 0}
+    volume: 1
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    playMultiple: 1
+    spatialBlend: 0.7
+    minDistance: 1
+    maxDistance: 500
+    source: {fileID: 0}
+  - name: footsteps
+    clip: {fileID: 8300000, guid: a66c9305c36de5d49bcb125174b35010, type: 3}
+    parent: {fileID: 0}
+    volume: 1
+    pitch: 1
+    loop: 1
+    playOnAwake: 0
+    playMultiple: 1
+    spatialBlend: 1
+    minDistance: 1
+    maxDistance: 20
+    source: {fileID: 0}
+  - name: wood_hit
+    clip: {fileID: 8300000, guid: ff5882ac88d6ddb47ad024d587adbf80, type: 3}
+    parent: {fileID: 0}
+    volume: 1
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    playMultiple: 1
+    spatialBlend: 1
+    minDistance: 1
+    maxDistance: 20
+    source: {fileID: 0}
+  - name: wood_break
+    clip: {fileID: 8300000, guid: 5e636f476a0108d4aa45d16e9a0f927d, type: 3}
+    parent: {fileID: 0}
+    volume: 1
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    playMultiple: 1
+    spatialBlend: 1
+    minDistance: 1
+    maxDistance: 20
+    source: {fileID: 0}
+--- !u!4 &955322264
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 955322262}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.0978682, y: 6.572071, z: -20.846176}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2020318702
 GameObject:
   m_ObjectHideFlags: 0

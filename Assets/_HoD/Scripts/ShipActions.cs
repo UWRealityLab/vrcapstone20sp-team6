@@ -16,6 +16,8 @@ namespace Com.Udomugo.HoD
         [SerializeField]
         public bool anchorDown;
         [SerializeField]
+        public int crankTurns;
+        [SerializeField]
         public Transform anchor;
         [SerializeField]
         public bool sailsDown;
@@ -25,6 +27,14 @@ namespace Com.Udomugo.HoD
         public List<GameObject> mizzenSails;
         [SerializeField]
         public List<Transform> mastAndSails;
+        [SerializeField]
+        public bool hoistDown;
+        [SerializeField]
+        public int cableScale;
+        [SerializeField]
+        public Transform hoistCable;
+        [SerializeField]
+        public Transform hoistPlatform;
 
         void Start()
         {
@@ -35,6 +45,7 @@ namespace Com.Udomugo.HoD
             DebugUIBuilder.instance.AddButton("Brace Portside", () => Port());
             DebugUIBuilder.instance.AddButton("Brace Starboard", () => Star());
             DebugUIBuilder.instance.AddButton("Brace Normal", () => Norm());
+            DebugUIBuilder.instance.AddButton("Raise/Lower Hoist", () => Hoist());
 
             DebugUIBuilder.instance.Show();
         }
@@ -42,25 +53,6 @@ namespace Com.Udomugo.HoD
         void RaiseLowerSails()
         {
             sailsDown = !sailsDown;
-            if (sailsDown) {
-                foreach (GameObject mainSail in mainSails) {
-                    // mainSail.active = true;
-                    mainSail.GetComponent<SkinnedMeshRenderer>().enabled = true;
-                }
-                foreach (GameObject mizzenSail in mizzenSails) {
-                    // mizzenSail.active = true;
-                    mizzenSail.GetComponent<SkinnedMeshRenderer>().enabled = true;
-                }
-            } else {
-                foreach (GameObject mainSail in mainSails) {
-                    // mainSail.active = false;
-                    mainSail.GetComponent<SkinnedMeshRenderer>().enabled = false;
-                }
-                foreach (GameObject mizzenSail in mizzenSails) {
-                    // mizzenSail.active = false;
-                    mizzenSail.GetComponent<SkinnedMeshRenderer>().enabled = false;
-                }
-            }
         }
 
         void Anchor()
@@ -89,12 +81,62 @@ namespace Com.Udomugo.HoD
             }
         }
 
+        void Hoist()
+        {
+            hoistDown = !hoistDown;
+        }
+
         void Update()
         {
-            if (anchorDown && crank.transform.rotation.y < 270) {
-                crank.transform.localEulerAngles = new Vector3(0f, crank.transform.rotation.y + 2, 0f);
-            } else if (crank.transform.rotation.y > 0) {
-                crank.transform.localEulerAngles = new Vector3(0f, crank.transform.rotation.y - 2, 0f);
+            if (anchorDown && crankTurns < 30) {
+                crank.transform.Rotate(0f, 3f, 0f);
+                crankTurns++;
+                // crank.transform.localEulerAngles = new Vector3(0f, crank.transform.rotation.y + 2f, 0f);
+            } else if (!anchorDown && crankTurns > 0) {
+                crank.transform.Rotate(0f, -3f, 0f);
+                crankTurns--;
+            }
+
+            if (hoistDown) {
+                if (hoistPlatform.transform.position.y > -0.1f) {
+                    hoistPlatform.transform.Translate(0f, -0.01f, 0f);
+                }
+                if (cableScale < 90) {
+                    cableScale++;
+                    hoistCable.transform.localScale = new Vector3(0.06936289f, 7 * (7 * (cableScale / 90) / 7), 0.06936289f);
+                }
+            } else {
+                if (hoistPlatform.transform.position.y < 0f) {
+                    hoistPlatform.transform.Translate(0f, 0.01f, 0f);
+                }
+                if (cableScale > 1) {
+                    cableScale--;
+                    hoistCable.transform.localScale = new Vector3(0.06936289f, 7 * (7 * (cableScale / 90) / 7), 0.06936289f);
+                }
+            }
+
+            if (sailsDown) {
+                foreach (GameObject mainSail in mainSails) {
+                    mainSail.active = true;
+                    mainSail.SetActive(true);
+                    mainSail.GetComponent<SkinnedMeshRenderer>().enabled = true;
+                }
+                foreach (GameObject mizzenSail in mizzenSails) {
+                    mizzenSail.active = true;
+                    mizzenSail.SetActive(true);
+                    mizzenSail.GetComponent<SkinnedMeshRenderer>().enabled = true;
+                }
+            } else {
+                foreach (GameObject mainSail in mainSails) {
+                    mainSail.active = false;
+                    mainSail.SetActive(false);
+                    mainSail.GetComponent<SkinnedMeshRenderer>().enabled = false;
+                }
+                foreach (GameObject mizzenSail in mizzenSails) {
+                    mizzenSail.active = false;
+                    mizzenSail.SetActive(false);
+                    mizzenSail.GetComponent<SkinnedMeshRenderer>().enabled = false;
+                }
             }
         }
 

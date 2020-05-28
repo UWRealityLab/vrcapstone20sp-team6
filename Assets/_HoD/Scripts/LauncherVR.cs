@@ -129,7 +129,7 @@ namespace Com.Udomugo.OculusVRTutorial
         {
             Debug.Log("PUN Basics Tutorial/Launcher: OnJoinedRoom() called by PUN. Now this client is in a room");
 
-            PhotonNetwork.LoadLevel("HoD_Prototype");
+            PhotonNetwork.LoadLevel("HoD_Combined");
 
             // #Critical: We only load if we are the first player, else we rely on 'PhotonNetwork.AutomaticallySyncScene' to sync our instance scene.
             /*if (PhotonNetwork.CurrentRoom.PlayerCount == 1)

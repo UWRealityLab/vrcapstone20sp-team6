@@ -35,6 +35,8 @@ namespace Com.Udomugo.HoD
         public Transform hoistCable;
         [SerializeField]
         public Transform hoistPlatform;
+        [SerializeField]
+        public int braceDir;
 
         void Start()
         {
@@ -62,23 +64,17 @@ namespace Com.Udomugo.HoD
 
         void Port()
         {
-            foreach (Transform mastOrSail in mastAndSails) {
-                mastOrSail.transform.localEulerAngles = new Vector3(0f, -45f, 0f);
-            }
+            braceDir = 1;
         }
 
         void Star()
         {
-            foreach (Transform mastOrSail in mastAndSails) {
-                mastOrSail.transform.localEulerAngles = new Vector3(0f, 45f, 0f);
-            }
+            braceDir = 2;
         }
 
         void Norm()
         {
-            foreach (Transform mastOrSail in mastAndSails) {
-                mastOrSail.transform.localEulerAngles = new Vector3(0f, 0f, 0f);
-            }
+            braceDir = 0;
         }
 
         void Hoist()
@@ -98,44 +94,58 @@ namespace Com.Udomugo.HoD
             }
 
             if (hoistDown) {
-                if (hoistPlatform.transform.position.y > -0.1f) {
-                    hoistPlatform.transform.Translate(0f, -0.01f, 0f);
-                }
-                if (cableScale < 90) {
+                if (cableScale < 70) {
                     cableScale++;
-                    hoistCable.transform.localScale = new Vector3(0.06936289f, 7 * (7 * (cableScale / 90) / 7), 0.06936289f);
+                    hoistCable.transform.localScale = new Vector3(0.06936289f, 7f * (cableScale / 70f), 0.06936289f);
+                    hoistPlatform.transform.Translate(0f, -0.045f, 0f);
                 }
             } else {
-                if (hoistPlatform.transform.position.y < 0f) {
-                    hoistPlatform.transform.Translate(0f, 0.01f, 0f);
-                }
-                if (cableScale > 1) {
+                if (cableScale > 10) {
                     cableScale--;
-                    hoistCable.transform.localScale = new Vector3(0.06936289f, 7 * (7 * (cableScale / 90) / 7), 0.06936289f);
+                    hoistCable.transform.localScale = new Vector3(0.06936289f, 7f * (cableScale / 70f), 0.06936289f);
+                    hoistPlatform.transform.Translate(0f, 0.045f, 0f);
                 }
             }
 
             if (sailsDown) {
                 foreach (GameObject mainSail in mainSails) {
-                    mainSail.active = true;
                     mainSail.SetActive(true);
                     mainSail.GetComponent<SkinnedMeshRenderer>().enabled = true;
                 }
                 foreach (GameObject mizzenSail in mizzenSails) {
-                    mizzenSail.active = true;
                     mizzenSail.SetActive(true);
                     mizzenSail.GetComponent<SkinnedMeshRenderer>().enabled = true;
                 }
             } else {
                 foreach (GameObject mainSail in mainSails) {
-                    mainSail.active = false;
                     mainSail.SetActive(false);
                     mainSail.GetComponent<SkinnedMeshRenderer>().enabled = false;
                 }
                 foreach (GameObject mizzenSail in mizzenSails) {
-                    mizzenSail.active = false;
                     mizzenSail.SetActive(false);
                     mizzenSail.GetComponent<SkinnedMeshRenderer>().enabled = false;
+                }
+            }
+
+            if (braceDir == 1) {
+                foreach (Transform mastOrSail in mastAndSails) {
+                    if ((int)mastOrSail.transform.localEulerAngles.y > 315 || (int)mastOrSail.transform.localEulerAngles.y == 0 || (int)mastOrSail.transform.localEulerAngles.y < 46) {
+                        mastOrSail.transform.Rotate(0, -3, 0);
+                    }
+                }
+            } else if (braceDir == 2) {
+                foreach (Transform mastOrSail in mastAndSails) {
+                    if ((int)mastOrSail.transform.localEulerAngles.y < 45 || (int)mastOrSail.transform.localEulerAngles.y == 0 || (int)mastOrSail.transform.localEulerAngles.y > 314) {
+                        mastOrSail.transform.Rotate(0, 3, 0);
+                    }
+                }
+            } else {
+                foreach (Transform mastOrSail in mastAndSails) {
+                    if ((int)mastOrSail.transform.localEulerAngles.y > 0 && (int)mastOrSail.transform.localEulerAngles.y < 180) {
+                        mastOrSail.transform.Rotate(0, -3, 0);
+                    } else if ((int)mastOrSail.transform.localEulerAngles.y > 180) {
+                        mastOrSail.transform.Rotate(0, 3, 0);
+                    }
                 }
             }
         }

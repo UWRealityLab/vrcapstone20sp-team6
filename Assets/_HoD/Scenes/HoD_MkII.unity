@@ -1357,7 +1357,7 @@ PrefabInstance:
     - target: {fileID: 224586678184848430, guid: ddb963bcde7d8a04a88b3ee4709f46c7,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.0015
+      value: -0.65
       objectReference: {fileID: 0}
     - target: {fileID: 224586678184848430, guid: ddb963bcde7d8a04a88b3ee4709f46c7,
         type: 3}
@@ -6056,9 +6056,10 @@ MonoBehaviour:
   - {fileID: 1504470891}
   - {fileID: 2044653059}
   hoistDown: 0
-  cableScale: 1
+  cableScale: 10
   hoistCable: {fileID: 8051452123786322711}
   hoistPlatform: {fileID: 1998464425422621856}
+  braceDir: 0
 --- !u!4 &1000792480029188155
 Transform:
   m_ObjectHideFlags: 0

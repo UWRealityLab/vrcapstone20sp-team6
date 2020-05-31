@@ -26,7 +26,7 @@ namespace Com.Udomugo.HoD
         [SerializeField]
         public List<GameObject> mizzenSails;
         [SerializeField]
-        public List<Transform> mastAndSails;
+        public List<Transform> masts;
         [SerializeField]
         public bool hoistDown;
         [SerializeField]
@@ -82,6 +82,26 @@ namespace Com.Udomugo.HoD
             hoistDown = !hoistDown;
         }
 
+        void bracePort(Transform mastOrSail) {
+            if ((int)mastOrSail.transform.localEulerAngles.y > 315 || (int)mastOrSail.transform.localEulerAngles.y == 0 || (int)mastOrSail.transform.localEulerAngles.y < 46) {
+                mastOrSail.transform.Rotate(0, -3, 0);
+            }
+        }
+
+        void braceStar(Transform mastOrSail) {
+            if ((int)mastOrSail.transform.localEulerAngles.y < 45 || (int)mastOrSail.transform.localEulerAngles.y == 0 || (int)mastOrSail.transform.localEulerAngles.y > 314) {
+                    mastOrSail.transform.Rotate(0, 3, 0);
+            }
+        }
+
+        void braceNorm(Transform mastOrSail) {
+            if ((int)mastOrSail.transform.localEulerAngles.y > 0 && (int)mastOrSail.transform.localEulerAngles.y < 180) {
+                mastOrSail.transform.Rotate(0, -3, 0);
+            } else if ((int)mastOrSail.transform.localEulerAngles.y > 180) {
+                mastOrSail.transform.Rotate(0, 3, 0);
+            }
+        }
+
         void Update()
         {
             if (anchorDown && crankTurns < 30) {
@@ -128,24 +148,34 @@ namespace Com.Udomugo.HoD
             }
 
             if (braceDir == 1) {
-                foreach (Transform mastOrSail in mastAndSails) {
-                    if ((int)mastOrSail.transform.localEulerAngles.y > 315 || (int)mastOrSail.transform.localEulerAngles.y == 0 || (int)mastOrSail.transform.localEulerAngles.y < 46) {
-                        mastOrSail.transform.Rotate(0, -3, 0);
-                    }
+                foreach (Transform mast in masts) {
+                    bracePort(mast);
+                }
+                foreach (GameObject mainSail in mainSails) {
+                    bracePort(mainSail.GetComponent<Transform>());
+                }
+                foreach (GameObject mizzenSail in mizzenSails) {
+                    bracePort(mizzenSail.GetComponent<Transform>());
                 }
             } else if (braceDir == 2) {
-                foreach (Transform mastOrSail in mastAndSails) {
-                    if ((int)mastOrSail.transform.localEulerAngles.y < 45 || (int)mastOrSail.transform.localEulerAngles.y == 0 || (int)mastOrSail.transform.localEulerAngles.y > 314) {
-                        mastOrSail.transform.Rotate(0, 3, 0);
-                    }
+                foreach (Transform mast in masts) {
+                    braceStar(mast);
+                }
+                foreach (GameObject mainSail in mainSails) {
+                    braceStar(mainSail.GetComponent<Transform>());
+                }
+                foreach (GameObject mizzenSail in mizzenSails) {
+                    braceStar(mizzenSail.GetComponent<Transform>());
                 }
             } else {
-                foreach (Transform mastOrSail in mastAndSails) {
-                    if ((int)mastOrSail.transform.localEulerAngles.y > 0 && (int)mastOrSail.transform.localEulerAngles.y < 180) {
-                        mastOrSail.transform.Rotate(0, -3, 0);
-                    } else if ((int)mastOrSail.transform.localEulerAngles.y > 180) {
-                        mastOrSail.transform.Rotate(0, 3, 0);
-                    }
+                foreach (Transform mast in masts) {
+                    braceNorm(mast);
+                }
+                foreach (GameObject mainSail in mainSails) {
+                    braceNorm(mainSail.GetComponent<Transform>());
+                }
+                foreach (GameObject mizzenSail in mizzenSails) {
+                    braceNorm(mizzenSail.GetComponent<Transform>());
                 }
             }
         }

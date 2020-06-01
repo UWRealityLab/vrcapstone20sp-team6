@@ -69,7 +69,7 @@
 
     <!-- Page Header -->
     <!-- Set your background image for this header on the line below. -->
-    <header class="intro-header" style="background-image: url('img/new_world.png')">   <!-- change the post main background image -->
+    <header class="intro-header" style="background-image: url('img/ship_with_poi_dark.png')">   <!-- change the post main background image -->
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
@@ -91,7 +91,7 @@
 
                     <h2 class="section-heading">New Ship Unlocked</h2>
 
-                    <p>IThe new ship is finally set up with all the interactions and parts it needs for the demo experience. From last week, we ran into a bug regarding the cloth component bounds. This has now been fixed, by using the ProBuilder tools. We had run into the issue that the ProBuilder script depends on a MeshRenderer while cloth depends on a SkinnedMeshRenderer. However, it turns out the fix for this is a simple one, as we managed to retain the ProBuilder properties by setting the MeshRenderer to not be active.
+                    <p>The new ship is finally set up with all the interactions and parts it needs for the demo experience. From last week, we ran into a bug regarding the cloth component bounds. This has now been fixed, by using the ProBuilder tools. We had run into the issue that the ProBuilder script depends on a MeshRenderer while cloth depends on a SkinnedMeshRenderer. However, it turns out the fix for this is a simple one, as we managed to retain the ProBuilder properties by setting the MeshRenderer to not be active.
                         The final piece for our demo that we modeled is a crate that contains supplies which the hoist can lift and lower. We, again, modeled this ourselves in Maya.
                         </p>
 
@@ -104,7 +104,25 @@
 
                     <h2 class="section-heading">Turn! Turn! Turn!</h2>
 
-                    <p>[to be added]</p>
+                    <p>One of the biggest challenges we have faced is rotating the world around the ship to preserve the local physics around the player to be normalized for VR. Through sevral iterations of utilizing the various methods of moving object in Unity we have a hybrid method that moves the world as a rigidbody and then conducts a rotation on the world's transform object at the point on the world object that the ship is currently at. It is far from a perfect solution and what we as a team initial set out to deliver, but it should provide a basic sense of sailing.</p>
+
+                    <a href="#">
+                        <video width="750"; height: auto; autoplay loop muted inline>
+                          <source src="video/SailControls_001.mp4" type="video/mp4">
+                          Your browser does not support the video tag.
+                        </video>
+                    </a>
+
+                    <p>It was an unfortuante setback to find that the rotational model we implemented in the previous week began to show incosistent sailing experiences as we attempted to dial in the controls to allow the ship to approch a dock with a sense of accuracy for the user. It was disheartening to have to abandon the spherical model and return to a rotating plane.</p>
+
+                    <p>The most important objectives is for users to feel that they can control the boat to a point of interest and interact with the hoist.</p>
+
+                      <a href="#">
+                          <video width="750"; height: auto; autoplay loop muted inline>
+                            <source src="video/SailControls_002.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                          </video>
+                      </a>
 
                     <h2 class="section-heading">Bringing it all together</h2>
 
@@ -114,13 +132,13 @@
                     <hr>
                     <h4 class="section-heading">- Work Log -</h4>
 
-                    <p>James: </p>
+                    <p>James: Reworked the sailing mechanic from spherical rotation to a translational plane that rotates around the point the ship is occupying. Added world motion mechanics to combined project with new ship. Reimplemented helm wheel steering in VR. Created a point of interest as a drop off destination for supplies carried on board.</p>
                     <p>Patrick: Fixed ship cloth bug, modelled crate asset, added hoist interaction, merged ship into new combined scene</p>
                     <p>Abhinav: </p>
                     <p>Julian: </p>
                     <h4 class="section-heading">- Work Plan -</h4>
                     <p>Everyone: Final push, record demo video, make presentation, design spatial room</p>
-                    <p>James: </p>
+                    <p>James: Implement destination heading icon in world for users to sail towoards. Implement wind direction indication. Work on user avatars and UI.</p>
                     <p>Patrick: Fix new ship prefab, help out with anything left over that needs to be done for the demo</p>
                     <p>Abhinav: </p>
                     <p>Julian: </p>

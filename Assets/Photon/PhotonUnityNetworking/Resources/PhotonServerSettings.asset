@@ -36,6 +36,14 @@ MonoBehaviour:
   - DestroySpaceship
   - Fire
   - RespawnSpaceship
+  - AnchorRPC
+  - BracePortRPC
+  - BraceStarRPC
+  - HoistRPC
+  - RaiseLowerSailsRPC
+  - SetBraceDirRPC
+  - WorldPosition
+  - WorldUpdate
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 0

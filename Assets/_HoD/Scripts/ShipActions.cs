@@ -42,14 +42,14 @@ namespace Com.Udomugo.HoD
 
         void Start()
         {
-            foreach (GameObject sail in mainSails)
-            {
-                sail.GetComponent<MeshRenderer>().enabled = false;
-            }
-            foreach (GameObject sail in mizzenSails)
-            {
-                sail.GetComponent<MeshRenderer>().enabled = false;
-            }
+            // foreach (GameObject sail in mainSails)
+            // {
+            //     sail.GetComponent<MeshRenderer>().enabled = false;
+            // }
+            // foreach (GameObject sail in mizzenSails)
+            // {
+            //     sail.GetComponent<MeshRenderer>().enabled = false;
+            // }
             PV = GetComponent<PhotonView>();
             DebugUIBuilder.instance.AddLabel("Ship Actions");
 

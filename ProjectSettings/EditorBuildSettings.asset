@@ -5,10 +5,10 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
+  - enabled: 1
     path: Assets/_HoD/Scenes/HoD_LauncherVR.unity
     guid: 6352729c196cc7542846b0e4cf815e54
-  - enabled: 0
+  - enabled: 1
     path: Assets/_HoD/Scenes/HoD_Launcher.unity
     guid: 4a9162365e425f24dbffda089864a1f9
   - enabled: 0

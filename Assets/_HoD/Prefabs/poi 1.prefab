@@ -1,5 +1,31 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &5969758941034517189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5969758940181252355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aac844047b5e1f742a053d9e3856b2ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bools: 0100000000
+--- !u!114 &5969758942142088312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5969758940403600140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aac844047b5e1f742a053d9e3856b2ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bools: 0100000000
 --- !u!1 &5969758940431564588
 GameObject:
   m_ObjectHideFlags: 0
@@ -79,32 +105,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5969758941034517189
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5969758940181252355}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aac844047b5e1f742a053d9e3856b2ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bools: 0100000000
---- !u!114 &5969758942142088312
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5969758940403600140}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aac844047b5e1f742a053d9e3856b2ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bools: 0100000000
 --- !u!1001 &5969758940181221283
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -1,11 +1,13 @@
-﻿using System;
+﻿using Com.Udomugo.HoD;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class SailRelativeController : MonoBehaviour
 {
-    public bool anchor;
+    public ShipActions ship_actions;
+    private bool anchor_isDown;
 
     public float helm;
     public float wind_power;
@@ -33,6 +35,7 @@ public class SailRelativeController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
         world = GameObject.Find("world");
         trim = GameObject.Find("trim");
         rudder = GameObject.Find("rudder");
@@ -47,6 +50,7 @@ public class SailRelativeController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        anchor_isDown = ship_actions.anchorDown;
         rb.centerOfMass = ship.transform.position - world.transform.position;
         //world.GetComponent<Collider>().transform.position = ship.transform.position - world.transform.position;
         /*
@@ -120,7 +124,7 @@ public class SailRelativeController : MonoBehaviour
         Vector3 rotate_count_vec = -rudder.transform.right;
         Vector3 rotate_offest_vec = rudder.transform.rotation * rb.velocity * -0.3f;
 
-        if (!anchor)
+        if (!anchor_isDown)
         {
             
             //rb.AddForce(-trim_facing * wind_power * trim_power, ForceMode.Acceleration);
@@ -164,9 +168,9 @@ public class SailRelativeController : MonoBehaviour
                 rotate_count_vec = rudder.transform.right;
             }
 
-            rb.AddForce(-ship.transform.forward * trim_power * wind_power * (0.3f - rudder_power_cross), ForceMode.Acceleration);
+            rb.AddForce(-ship.transform.forward * trim_power * wind_power * (0.7f - rudder_power_cross), ForceMode.Acceleration);
             //world.transform.Rotate(Vector3.up, rudder_angle * rudder_dir * 0.5f * wind_power * Time.deltaTime, Space.World);
-            rb.MoveRotation(Quaternion.RotateTowards(world.transform.rotation, Quaternion.Euler(0, rudder_angle * rudder_dir, 0), Time.deltaTime * wind_power + trim_power));
+            //rb.MoveRotation(Quaternion.RotateTowards(world.transform.rotation, Quaternion.Euler(0, rudder_angle * rudder_dir, 0), Time.deltaTime * wind_power + trim_power));
             rb.AddForce(-ship.transform.forward * rudder_power_cross * trim_power * wind_power, ForceMode.Acceleration);
             //rb.AddForce(rotate_count_vec * rudder_power_cross * trim_power * wind_power, ForceMode.Acceleration);
             //rb.AddForce(heading_rudder * rudder_power_cross * trim_power * wind_power, ForceMode.Acceleration);

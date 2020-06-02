@@ -40,6 +40,7 @@ namespace Com.Udomugo.HoD
         [SerializeField]
         public int braceDir;
 
+        public GameObject trim;
         void Start()
         {
             // foreach (GameObject sail in mainSails)
@@ -111,6 +112,7 @@ namespace Com.Udomugo.HoD
             if ((int)mastOrSail.transform.localEulerAngles.y > 315 || (int)mastOrSail.transform.localEulerAngles.y == 0 || (int)mastOrSail.transform.localEulerAngles.y < 46)
             {
                 mastOrSail.transform.Rotate(0, -3, 0);
+                trim.transform.rotation = mastOrSail.transform.rotation;
                 PV.RPC("BracePortRPC", RpcTarget.Others, mastOrSail);
             }
         }
@@ -121,6 +123,7 @@ namespace Com.Udomugo.HoD
             if ((int)mastOrSail.transform.localEulerAngles.y < 45 || (int)mastOrSail.transform.localEulerAngles.y == 0 || (int)mastOrSail.transform.localEulerAngles.y > 314)
             {
                 mastOrSail.transform.Rotate(0, 3, 0);
+                trim.transform.rotation = mastOrSail.transform.rotation;
                 PV.RPC("BraceStarRPC", RpcTarget.Others, mastOrSail);
             }
         }
@@ -131,11 +134,13 @@ namespace Com.Udomugo.HoD
             if ((int)mastOrSail.transform.localEulerAngles.y > 0 && (int)mastOrSail.transform.localEulerAngles.y < 180)
             {
                 mastOrSail.transform.Rotate(0, -3, 0);
+                trim.transform.rotation = mastOrSail.transform.rotation;
                 PV.RPC("BracePortRPC", RpcTarget.Others, mastOrSail);
             }
             else if ((int)mastOrSail.transform.localEulerAngles.y > 180)
             {
                 mastOrSail.transform.Rotate(0, 3, 0);
+                trim.transform.rotation = mastOrSail.transform.rotation;
                 PV.RPC("BraceStarRPC", RpcTarget.Others, mastOrSail);
             }
         }

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TrimController : MonoBehaviour
 {
+    public GameObject main_sail;
     private GameObject trim;
 
     // Start is called before the first frame update
@@ -15,7 +16,7 @@ public class TrimController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        /*
         Vector3 rot = trim.transform.rotation.eulerAngles;
 
         if (Input.GetKeyDown(KeyCode.Q))
@@ -26,7 +27,7 @@ public class TrimController : MonoBehaviour
         {
             rot.y--;
         }
-
-        trim.transform.rotation = Quaternion.Euler(rot);
+        */
+        trim.transform.rotation = main_sail.transform.rotation;
     }
 }

@@ -11,6 +11,7 @@ namespace Com.Udomugo.OculusVRTutorial
         #region Public Fields
 
         public GameObject avatar_head;
+        public GameObject avatar_body;
         public GameObject avatar_left_hand;
         public GameObject avatar_right_hand;
 
@@ -94,8 +95,8 @@ namespace Com.Udomugo.OculusVRTutorial
                 // only do this for the player that is me.
                 playerGlobal = GameObject.Find("OVRPlayerController").transform;
                 playerLocal_head = playerGlobal.Find("OVRCameraRig/TrackingSpace/CenterEyeAnchor").transform;
-                playerLocal_left_hand = playerGlobal.Find("OVRCameraRig/TrackingSpace/LeftHandAnchor").transform;
-                playerLocal_right_hand = playerGlobal.Find("OVRCameraRig/TrackingSpace/RightHandAnchor").transform;
+                playerLocal_left_hand = playerGlobal.Find("OVRCameraRig/TrackingSpace/LeftHandAnchor/left_hand").transform;
+                playerLocal_right_hand = playerGlobal.Find("OVRCameraRig/TrackingSpace/RightHandAnchor/right_hand").transform;
 
                 // Want to attach avatar to centerEyeAnchor.
                 avatar_head.transform.SetParent(playerLocal_head);

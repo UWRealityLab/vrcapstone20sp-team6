@@ -31,16 +31,16 @@ MonoBehaviour:
   RunInBackground: 1
   StartInOfflineMode: 0
   RpcList:
+  - AnchorRPC
+  - BracePortRPC
+  - BraceStarRPC
   - ClickRpc
   - DestroyRpc
   - DestroySpaceship
   - Fire
-  - RespawnSpaceship
-  - AnchorRPC
-  - BracePortRPC
-  - BraceStarRPC
   - HoistRPC
   - RaiseLowerSailsRPC
+  - RespawnSpaceship
   - SetBraceDirRPC
   - WorldPosition
   - WorldUpdate

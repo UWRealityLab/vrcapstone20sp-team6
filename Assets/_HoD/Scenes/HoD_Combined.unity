@@ -1665,7 +1665,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   radius: 15
-  ship: {fileID: 0}
+  ship: {fileID: 8744414378156330954}
 --- !u!1001 &1025552760
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1778,6 +1778,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5692901037829357017}
     m_Modifications:
+    - target: {fileID: 5862650672906142120, guid: caa3059d9e4951242b332e95f9c7ff68,
+        type: 3}
+      propertyPath: viewIdField
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 5862650672906142126, guid: caa3059d9e4951242b332e95f9c7ff68,
         type: 3}
       propertyPath: m_Name
@@ -2404,7 +2409,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   radius: 15
-  ship: {fileID: 0}
+  ship: {fileID: 8744414378156330954}
 --- !u!1 &1822712047
 GameObject:
   m_ObjectHideFlags: 0
@@ -13261,7 +13266,7 @@ PrefabInstance:
         type: 3}
       propertyPath: ship
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 8744414378156330954}
     - target: {fileID: 3841741792578444615, guid: 0bd91911269cfc54d81e7e9aa5e79e6e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -16548,7 +16553,7 @@ PrefabInstance:
         type: 3}
       propertyPath: ship
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 8744414378156330954}
     - target: {fileID: 3671111743389631457, guid: 088db0d0868e99548a96d6b0e352c36b,
         type: 3}
       propertyPath: m_LocalPosition.x

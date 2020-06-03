@@ -182,6 +182,7 @@ public class SailRelativeController : MonoBehaviour
 
 
         }
+        /*
         Debug.DrawLine(ship.transform.position + (ship.transform.up * 10), rot_axis * -70, Color.black);
         //Debug.DrawLine(ship.transform.position + (ship.transform.up * 10), rb.velocity * -70, Color.black);
         Debug.DrawLine(ship.transform.position + (ship.transform.up * 10), rb.velocity * -100, Color.magenta);
@@ -190,7 +191,7 @@ public class SailRelativeController : MonoBehaviour
         //Debug.DrawLine(ship.transform.position + (ship.transform.up * 10), rotate_vec * 50, Color.red);
         Debug.DrawLine(ship.transform.position + (ship.transform.up * 10), rotate_count_vec * 50, Color.cyan);
         Debug.DrawLine(ship.transform.position + (ship.transform.up * 10), down_wind * 50, Color.blue);
-
+        */
         rb.velocity = Vector3.ClampMagnitude(rb.velocity, 10);
     }
 }

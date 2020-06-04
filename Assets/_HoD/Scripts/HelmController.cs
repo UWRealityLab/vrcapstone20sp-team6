@@ -45,9 +45,13 @@ public class HelmController : MonoBehaviour
         // Method that restores hands original position in their parent object
         ReleaseHandsFromHelm();
 
-        ConvertHandRotationToHelmRotation();
+        if (!(Mathf.Abs(currentHelmRotation).CompareTo(120) == 1))
+        {
+            ConvertHandRotationToHelmRotation();
+        }
+        
 
-        TurnWorld();
+        //TurnWorld();
 
         //UpdateRudderPos();
 

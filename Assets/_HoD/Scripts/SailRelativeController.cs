@@ -169,7 +169,7 @@ public class SailRelativeController : MonoBehaviour
             }
 
             rb.AddForce(-ship.transform.forward * trim_power * wind_power * (0.7f - rudder_power_cross), ForceMode.Acceleration);
-            //world.transform.Rotate(Vector3.up, rudder_angle * rudder_dir * 0.5f * wind_power * Time.deltaTime, Space.World);
+            world.transform.Rotate(Vector3.up, Mathf.Max(rudder_angle - 10, 0) * rudder_dir * 0.5f * wind_power * Time.deltaTime, Space.World);
             //rb.MoveRotation(Quaternion.RotateTowards(world.transform.rotation, Quaternion.Euler(0, rudder_angle * rudder_dir, 0), Time.deltaTime * wind_power + trim_power));
             rb.AddForce(-ship.transform.forward * rudder_power_cross * trim_power * wind_power, ForceMode.Acceleration);
             //rb.AddForce(rotate_count_vec * rudder_power_cross * trim_power * wind_power, ForceMode.Acceleration);
@@ -182,7 +182,6 @@ public class SailRelativeController : MonoBehaviour
 
 
         }
-        /*
         Debug.DrawLine(ship.transform.position + (ship.transform.up * 10), rot_axis * -70, Color.black);
         //Debug.DrawLine(ship.transform.position + (ship.transform.up * 10), rb.velocity * -70, Color.black);
         Debug.DrawLine(ship.transform.position + (ship.transform.up * 10), rb.velocity * -100, Color.magenta);
@@ -191,7 +190,7 @@ public class SailRelativeController : MonoBehaviour
         //Debug.DrawLine(ship.transform.position + (ship.transform.up * 10), rotate_vec * 50, Color.red);
         Debug.DrawLine(ship.transform.position + (ship.transform.up * 10), rotate_count_vec * 50, Color.cyan);
         Debug.DrawLine(ship.transform.position + (ship.transform.up * 10), down_wind * 50, Color.blue);
-        */
+
         rb.velocity = Vector3.ClampMagnitude(rb.velocity, 10);
     }
 }

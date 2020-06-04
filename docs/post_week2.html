@@ -6,8 +6,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="description" content="Project Website for Team 6 of the Spring 2020 University of Washington VR Capstone Course">
+    <meta name="author" content="VRcap Team 6: James, Patrick, Abhinav, and Julian">
 
     <title>Hands on Deck VR - Week 2</title>
 
@@ -22,6 +22,12 @@
     <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
 
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16x16.png">
+    <link rel="manifest" href="icons/site.webmanifest">
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -29,9 +35,24 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+    <!-- change home icon color -->
+    <!-- <script>
+        function checkIconColor() {
+            let navClasses = document.querySelector("nav").classList;
+            if (navClasses.contains("is-visible")) {
+                document.getElementById("homeicon").src = "icons/icondark.png";
+            } else {
+                document.getElementById("homeicon").src = "icons/iconlight.png";
+            }
+            if (window.scrollY<= 100) {
+                document.getElementById("homeicon").src = "icons/iconlight.png";
+            }
+        }
+    </script> -->
+
 </head>
 
-<body>
+<body onmousewheel="checkIconColor()">
 
     <!-- Navigation -->
     <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
@@ -42,7 +63,9 @@
                     <span class="sr-only">Toggle navigation</span>
                     Menu <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand" href="index.html">Hands on Deck</a>
+                <a class="navbar-brand" href="index.html">
+                    <span style="white-space: nowrap;"><img src="icons/iconlight.png" id="homeicon" width="30" height="30" class="d-inline-block align-top" style="cursor: pointer;" alt="Hands on Deck">&ensp;Hands on Deck</span>
+                </a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -53,12 +76,6 @@
                     </li>
                     <li>
                         <a href="about.html">About</a>
-                    </li>
-                    <li>
-                        <a href="post.html">Sample Post</a>
-                    </li>
-                    <li>
-                        <a href="contact.html">Contact</a>
                     </li>
                 </ul>
             </div>
@@ -146,23 +163,7 @@
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                     <ul class="list-inline text-center">
                         <li>
-                            <a href="#">
-                                <span class="fa-stack fa-lg">
-                                    <i class="fa fa-circle fa-stack-2x"></i>
-                                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
-                                </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <span class="fa-stack fa-lg">
-                                    <i class="fa fa-circle fa-stack-2x"></i>
-                                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
-                                </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
+                            <a href="https://github.com/UWRealityLab/vrcapstone20sp-team6">
                                 <span class="fa-stack fa-lg">
                                     <i class="fa fa-circle fa-stack-2x"></i>
                                     <i class="fa fa-github fa-stack-1x fa-inverse"></i>
@@ -170,7 +171,7 @@
                             </a>
                         </li>
                     </ul>
-                    <p class="copyright text-muted">Copyright &copy; Your Website 2016</p>
+                    <p class="copyright text-muted">Copyright &copy; Hands on Deck <script>document.write(new Date().getFullYear())</script></p>
                 </div>
             </div>
         </div>

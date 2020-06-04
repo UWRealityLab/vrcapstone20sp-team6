@@ -38,6 +38,9 @@ namespace Com.Udomugo.OculusVRTutorial
         private void Start()
         {
             Cursor.visible = false;
+
+            Screen.SetResolution(1920, 1080, false);
+
             Instance = this;
             if (playerPrefab == null && playerPrefabVR == null)
             {

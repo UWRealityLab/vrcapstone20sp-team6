@@ -1,4 +1,4 @@
-<img src="docs/icons/largeicondark.png" alt="Hands on Deck: a virtual reality sailing experience">
+<img src="docs/icons/largeicondark.png" alt="Hands on Deck: a virtual reality sailing experience" width="300" height="300">
 
 <a href="https://uwrealitylab.github.io/vrcapstone20sp-team6/">Project Website</a>
 

@@ -8,6 +8,7 @@ namespace Com.Udomugo.HoD
     public class IslandRadiusUpdate : MonoBehaviour
     {
         public float radius;
+        public bool inRadius;
 
         private Vector3 position;
         private PhotonView photonView;
@@ -28,7 +29,8 @@ namespace Com.Udomugo.HoD
         // Update is called once per frame
         void Update()
         {
-            if (Vector3.Distance(shipPosition, position) <= radius && PhotonNetwork.IsMasterClient)
+            inRadius = Vector3.Distance(shipPosition, position) <= radius;
+            if (inRadius && PhotonNetwork.IsMasterClient)
             { // Ship within island bounds and masterclient view
                 photonView.RPC("WorldPosition", RpcTarget.Others, world.transform.position); // masterclient updates other players' world position.
             }

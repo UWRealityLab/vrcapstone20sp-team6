@@ -127,40 +127,6 @@ public class SailRelativeController : MonoBehaviour
         if (!anchor_isDown)
         {
             
-            //rb.AddForce(-trim_facing * wind_power * trim_power, ForceMode.Acceleration);
-            
-            /*
-            if (rudder_face.x > 0.15)
-            {
-                rotate_vec = cross_rudder_right;
-                rotate_count_vec = cross_rudder_left;
-                Debug.Log("Rotate Left");
-            }
-            else if (rudder_face.x < -0.15)
-            {
-                rotate_vec = cross_rudder_left;
-                rotate_count_vec = cross_rudder_right;
-                Debug.Log("Rotate Right");
-            }
-            else
-            {
-                rotate_vec = Vector3.zero;
-                rotate_count_vec = Vector3.zero;
-                rotate_offest_vec = Vector3.zero;
-                Debug.Log("No Rotate");
-            }
-            */
-
-            float velocity_ang = Vector3.Angle(ship.transform.forward, rb.velocity);
-
-            /*            // Last workering methods
-            //rb.AddForceAtPosition(rotate_vec * rb.velocity.magnitude, (ship.transform.position + rotate_offest_vec) * rb.velocity.magnitude, ForceMode.Acceleration);
-            rb.AddForceAtPosition(rotate_vec * rb.velocity.magnitude * trim_power * wind_power, (ship.transform.position -world.transform.position) + (ship.transform.forward * 500) * 2, ForceMode.Force);
-            //rb.AddForce(rotate_count_vec * rb.velocity.magnitude * 1.1f, ForceMode.Acceleration);       // this does not move the world in a drifting sensation
-            rb.AddForceAtPosition(rotate_count_vec * rb.velocity.magnitude * Mathf.Cos(velocity_ang) * trim_power, ship.transform.position, ForceMode.Acceleration);
-            rb.AddForceAtPosition(rotate_offest_vec * rb.velocity.magnitude * rudder_power * trim_power * 0.3f, ship.transform.position, ForceMode.Acceleration);
-            //rb.AddForce(Vector3.zero * 0.1f, ForceMode.Acceleration);
-            */
             float rudder_dir = -1;
             if (rudder_face.x > 0)
             {
@@ -173,7 +139,7 @@ public class SailRelativeController : MonoBehaviour
             //rb.MoveRotation(Quaternion.RotateTowards(world.transform.rotation, Quaternion.Euler(0, rudder_angle * rudder_dir, 0), Time.deltaTime * wind_power + trim_power));
             rb.AddForce(-ship.transform.forward * rudder_power_cross * trim_power * wind_power, ForceMode.Acceleration);
             //rb.AddForce(rotate_count_vec * rudder_power_cross * trim_power * wind_power, ForceMode.Acceleration);
-            //rb.AddForce(heading_rudder * rudder_power_cross * trim_power * wind_power, ForceMode.Acceleration);
+            rb.AddForce(heading_rudder * rudder_power_cross * trim_power * wind_power, ForceMode.Acceleration);
 
 
             //world.transform.SetPositionAndRotation(ship.transform.position - world.transform.forward, world.transform.rotation);

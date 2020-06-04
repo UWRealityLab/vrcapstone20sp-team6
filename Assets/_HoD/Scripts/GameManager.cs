@@ -37,6 +37,7 @@ namespace Com.Udomugo.OculusVRTutorial
 
         private void Start()
         {
+            Cursor.visible = false;
             Instance = this;
             if (playerPrefab == null && playerPrefabVR == null)
             {
@@ -51,7 +52,7 @@ namespace Com.Udomugo.OculusVRTutorial
 
                     if (Application.platform == RuntimePlatform.WindowsPlayer)
                     {
-                        PhotonNetwork.Instantiate(this.playerPrefab.name, new Vector3(0f, 5f, 0f), Quaternion.identity, 0);
+                        PhotonNetwork.Instantiate(this.playerPrefab.name, new Vector3(0f, 3f, 0f), Quaternion.identity, 0);
                     } else
                     {
                         PhotonNetwork.Instantiate(this.playerPrefabVR.name, new Vector3(0f, 5f, 0f), Quaternion.identity, 0);

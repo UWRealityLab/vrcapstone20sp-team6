@@ -4,26 +4,19 @@ using UnityEngine;
 
 public class PlayerAttach : MonoBehaviour
 {
-    public GameObject player;
-    public GameObject playerVR;
+    //public GameObject player;
+    //public GameObject playerVR;
 
     private void OnTriggerStay(Collider other)
     {
 
-        if (other.gameObject == player)
+        if (other.gameObject.CompareTag("Crate"))
         {
-            player.transform.parent = this.transform;
-
-        }
-        
-        if (other.gameObject == playerVR)
-        {
-            GameObject OVR = GameObject.Find("OVRPlayerController");
-            OVR.transform.parent = this.transform;
+            other.transform.parent = this.transform;
 
         }
     }
-
+    /*
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject == player)
@@ -38,4 +31,5 @@ public class PlayerAttach : MonoBehaviour
 
         }
     }
+    */
 }

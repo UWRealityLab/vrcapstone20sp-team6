@@ -35,9 +35,24 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+    <!-- change home icon color -->
+    <script>
+        function checkIconColor() {
+            let navClasses = document.querySelector("nav").classList;
+            if (navClasses.contains("is-visible")) {
+                document.getElementById("homeicon").src = "icons/icondark.png";
+            } else {
+                document.getElementById("homeicon").src = "icons/iconlight.png";
+            }
+            if (window.scrollY<= 100) {
+                document.getElementById("homeicon").src = "icons/iconlight.png";
+            }
+        }
+    </script>
+
 </head>
 
-<body>
+<body onmousewheel="checkIconColor()">
 
     <!-- Navigation -->
     <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
@@ -49,8 +64,7 @@
                     Menu <i class="fa fa-bars"></i>
                 </button>
                 <a class="navbar-brand" href="index.html">
-                    <img src="icons/iconlight.png" width="30" height="30" class="d-inline-block align-top" alt="Hands on Deck">
-                    Hands on Deck
+                    <span style="white-space: nowrap;"><img src="icons/iconlight.png" id="homeicon" width="30" height="30" class="d-inline-block align-top" style="cursor: pointer;" alt="Hands on Deck">&ensp;Hands on Deck</span>
                 </a>
             </div>
 

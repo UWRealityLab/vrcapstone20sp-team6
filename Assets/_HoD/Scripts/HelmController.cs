@@ -31,7 +31,7 @@ public class HelmController : MonoBehaviour
 
     // Turn dampening, lower number makes the world take longer time to reach target rotation
     // For world to just copy steering helm movement use high number like 9999
-    private float turnDampening = 20;
+    private float turnDampening = 1.2f;
 
     public Transform directionalObject;
 
@@ -57,6 +57,7 @@ public class HelmController : MonoBehaviour
         }*/
 
         ConvertHandRotationToHelmRotation();
+
         TurnWorld();
 
         //UpdateRudderPos();

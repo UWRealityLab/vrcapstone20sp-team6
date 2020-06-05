@@ -14,6 +14,7 @@ public class PlayerAttach : MonoBehaviour
         {
             other.GetComponent<Rigidbody>().isKinematic = true;
             other.transform.parent = this.transform;
+            other.transform.rotation = transform.rotation;
 
         }
     }

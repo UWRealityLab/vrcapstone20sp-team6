@@ -15,14 +15,14 @@ namespace Com.Udomugo.OculusVRTutorial
         public GameObject avatar_left_hand;
         public GameObject avatar_right_hand;
 
-        public GameObject enviro;
+        //public GameObject enviro;
 
         private Transform playerGlobal;  // responsible for player avatar position
         private Transform playerLocal_head;   // responsible for head movements
         private Transform playerLocal_left_hand;   // responsible for left hand movements
         private Transform playerLocal_right_hand;   // responsible for right hand movements
 
-        private Transform enviro_trans;
+        //private Transform enviro_trans;
 
         #endregion
 
@@ -64,8 +64,8 @@ namespace Com.Udomugo.OculusVRTutorial
                 avatar_right_hand.transform.localRotation = (Quaternion)stream.ReceiveNext();
 
                 // receiveing enviro data
-                enviro_trans.position = (Vector3)stream.ReceiveNext();
-                enviro_trans.rotation = (Quaternion)stream.ReceiveNext();
+                //enviro_trans.position = (Vector3)stream.ReceiveNext();
+                //enviro_trans.rotation = (Quaternion)stream.ReceiveNext();
             }
         }
 
@@ -109,7 +109,7 @@ namespace Com.Udomugo.OculusVRTutorial
                 avatar_head.SetActive(false);  // hides avatar head from player
             }
 
-            enviro_trans = enviro.transform;
+            //enviro_trans = enviro.transform;
 
         }
 

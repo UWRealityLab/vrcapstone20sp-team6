@@ -1,10 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Xml.Serialization;
+using Photon.Pun;
 using UnityEngine;
 
+[RequireComponent(typeof(PhotonView))]
 public class HelmController : MonoBehaviour
 {
+    private PhotonView PV;
+
     // Righthand
     public GameObject righthand;
     private Transform rightHandOriginalParent;
@@ -36,6 +40,7 @@ public class HelmController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        PV = GetComponent<PhotonView>();
         worldRigidbody = world.GetComponent<Rigidbody>();
     }
 
@@ -148,6 +153,10 @@ public class HelmController : MonoBehaviour
 
     private void PlaceHandOnHelm(ref GameObject hand, ref Transform originalParent, ref bool handOnHelm)
     {
+        if (!PV.IsMine)
+        {
+            PV.RequestOwnership();
+        }
         // Set variables to the first snapp position in array
         var shortestDistance = Vector3.Distance(snappPositions[0].position, hand.transform.position);
         var bestSnapp = snappPositions[0];

@@ -164,8 +164,8 @@ namespace Com.Udomugo.HoD
                 if (cableScale < 70)
                 {
                     cableScale++;
-                    hoistCable.transform.localScale = new Vector3(0.06936289f, 7f * (cableScale / 70f), 0.06936289f);
-                    hoistPlatform.transform.Translate(0f, -0.045f, 0f);
+                    hoistCable.transform.localScale = new Vector3(0.06936289f, 4.8f * (cableScale / 70f), 0.06936289f);
+                    hoistPlatform.transform.Translate(0f, -0.042f, 0f);
                 }
             }
             else
@@ -173,8 +173,8 @@ namespace Com.Udomugo.HoD
                 if (cableScale > 10)
                 {
                     cableScale--;
-                    hoistCable.transform.localScale = new Vector3(0.06936289f, 7f * (cableScale / 70f), 0.06936289f);
-                    hoistPlatform.transform.Translate(0f, 0.045f, 0f);
+                    hoistCable.transform.localScale = new Vector3(0.06936289f, 4.8f * (cableScale / 70f) + ((10 / cableScale) * 0.314f), 0.06936289f);
+                    hoistPlatform.transform.Translate(0f, 0.042f, 0f);
                 }
             }
 
@@ -204,7 +204,9 @@ namespace Com.Udomugo.HoD
                     mizzenSail.GetComponent<SkinnedMeshRenderer>().enabled = false;
                 }
             }
+        }
 
+        void FixedUpdate() {
             if (braceDir == 1)
             {
                 foreach (Transform mast in masts)

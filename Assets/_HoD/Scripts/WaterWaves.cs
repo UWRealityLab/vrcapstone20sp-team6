@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class WaterWaves : MonoBehaviour
 {
-    float scale = 0.4f;
+    float scale = 0.2f;
     float speed = 0.8f;
-    float noiseStrength = 2f;
+    float noiseStrength = 1.6f;
     float noiseWalk = 1f;
 
     private Vector3[] baseHeight;

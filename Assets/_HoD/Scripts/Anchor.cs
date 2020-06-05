@@ -16,6 +16,6 @@ public class Anchor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(0, ((crank.transform.rotation.y/270) * -400) - transform.position.y, 0);
+        transform.Translate(0, ((crank.transform.rotation.y/270) * -800) - transform.position.y, 0);
     }
 }

@@ -781,6 +781,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: PirateAvatar
       objectReference: {fileID: 0}
+    - target: {fileID: -113181020801827196, guid: 56c60f27a98102e498b42d959d0e5a71,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1304192527846552929, guid: 56c60f27a98102e498b42d959d0e5a71,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1304192527846552929, guid: 56c60f27a98102e498b42d959d0e5a71,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1304192527846552929, guid: 56c60f27a98102e498b42d959d0e5a71,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 56c60f27a98102e498b42d959d0e5a71, type: 3}
 --- !u!1 &6202063843442374724 stripped

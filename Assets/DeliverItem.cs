@@ -22,6 +22,7 @@ public class DeliverItem : MonoBehaviour
             other.gameObject.transform.parent = null;
 
             other.gameObject.transform.position = delivery_spot.transform.position;
+            other.gameObject.GetComponent<Rigidbody>().isKinematic = false;
             other.gameObject.SetActive(true);
 
             delivered = true;

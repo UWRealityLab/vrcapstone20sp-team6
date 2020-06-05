@@ -12,6 +12,7 @@ public class PlayerAttach : MonoBehaviour
 
         if (other.gameObject.CompareTag("Crate"))
         {
+            other.GetComponent<Rigidbody>().isKinematic = true;
             other.transform.parent = this.transform;
 
         }

@@ -158,7 +158,7 @@ public class SailRelativeController : MonoBehaviour
             }
 
             rb.AddForce(-ship.transform.forward * trim_power * wind_power * sail_power * (0.7f - rudder_power_cross), ForceMode.Acceleration);
-            world.transform.Rotate(Vector3.up, rudder_angle * rudder_dir * 0.3f * wind_power * Time.deltaTime, Space.World);
+            //world.transform.Rotate(Vector3.up, rudder_angle * rudder_dir * 0.3f * wind_power * Time.deltaTime, Space.World);
             //rb.MoveRotation(Quaternion.RotateTowards(world.transform.rotation, Quaternion.Euler(0, rudder_angle * rudder_dir, 0), Time.deltaTime * wind_power + trim_power));
             rb.AddForce(-ship.transform.forward * rudder_power_cross * trim_power * wind_power * sail_power, ForceMode.Acceleration);
             //rb.AddForce(rotate_count_vec * rudder_power_cross * trim_power * wind_power, ForceMode.Acceleration);

@@ -20,9 +20,9 @@ public class DeliverItem : MonoBehaviour
 
             // removing crate from platform
             other.gameObject.transform.parent = null;
-
-            other.gameObject.transform.position = delivery_spot.transform.position;
             other.gameObject.GetComponent<Rigidbody>().isKinematic = false;
+            other.gameObject.transform.position = delivery_spot.transform.position;
+            
             other.gameObject.SetActive(true);
 
             delivered = true;

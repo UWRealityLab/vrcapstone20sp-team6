@@ -170,6 +170,9 @@ public class SailRelativeController : MonoBehaviour
 
 
 
+        } else
+        {
+            rb.AddForce(-rb.velocity * 0.9f, ForceMode.VelocityChange);
         }
     }
 }

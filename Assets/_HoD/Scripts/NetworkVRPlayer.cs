@@ -101,10 +101,14 @@ namespace Com.Udomugo.OculusVRTutorial
                 // Want to attach avatar to centerEyeAnchor.
                 avatar_head.transform.SetParent(playerLocal_head);
                 avatar_head.transform.localPosition = Vector3.zero;
+                //avatar_head.transform.localRotation = Quaternion.Euler(-90, 0, 0);
+
                 avatar_left_hand.transform.SetParent(playerLocal_left_hand);
                 avatar_left_hand.transform.localPosition = Vector3.zero;
                 avatar_right_hand.transform.SetParent(playerLocal_right_hand);
                 avatar_right_hand.transform.localPosition = Vector3.zero;
+                avatar_body.transform.SetParent(playerGlobal);
+                avatar_body.transform.localPosition = new Vector3(0, 0, -1);
 
                 avatar_head.SetActive(false);  // hides avatar head from player
             }

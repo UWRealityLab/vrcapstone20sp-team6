@@ -25,7 +25,7 @@ public class ShipController : MonoBehaviourPunCallbacks
     private Quaternion yRotation(Quaternion q)
     {
         theta = Mathf.Atan2(q.z, q.w);
-        theta *= 0.3f;
+        theta *= 0.1f;
 
         // quaternion representing rotation about the y axis
         return new Quaternion(0, Mathf.Sin(theta), 0, Mathf.Cos(theta));

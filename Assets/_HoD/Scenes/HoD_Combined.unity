@@ -2517,7 +2517,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1060088769}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 65e9f2bbb5c83f64d84a69b40b3a5d25, type: 3}
   m_Name: 
@@ -2825,7 +2825,7 @@ MonoBehaviour:
   - {fileID: 731420144}
   - {fileID: 1630283393}
   - {fileID: 187365351}
-  rudder: {fileID: 0}
+  rudder: {fileID: 1060088770}
   world: {fileID: 836358254}
   currentHelmRotation: 0
   directionalObject: {fileID: 358243269}

@@ -95,12 +95,12 @@ namespace Com.Udomugo.OculusVRTutorial
                 // only do this for the player that is me.
                 playerGlobal = GameObject.Find("OVRPlayerController").transform;
                 playerLocal_head = playerGlobal.Find("OVRCameraRig/TrackingSpace/CenterEyeAnchor").transform;
-                playerLocal_left_hand = playerGlobal.Find("OVRCameraRig/TrackingSpace/LeftHandAnchor/left_hand").transform;
-                playerLocal_right_hand = playerGlobal.Find("OVRCameraRig/TrackingSpace/RightHandAnchor/right_hand").transform;
+                playerLocal_left_hand = playerGlobal.Find("OVRCameraRig/TrackingSpace/LeftHandAnchor").transform;
+                playerLocal_right_hand = playerGlobal.Find("OVRCameraRig/TrackingSpace/RightHandAnchor").transform;
 
                 // Want to attach avatar to centerEyeAnchor.
                 avatar_head.transform.SetParent(playerLocal_head);
-                avatar_head.transform.localPosition = Vector3.zero;
+                avatar_head.transform.localPosition = new Vector3(0, 0.5f, 0);
                 //avatar_head.transform.localRotation = Quaternion.Euler(-90, 0, 0);
 
                 avatar_left_hand.transform.SetParent(playerLocal_left_hand);
@@ -108,7 +108,7 @@ namespace Com.Udomugo.OculusVRTutorial
                 avatar_right_hand.transform.SetParent(playerLocal_right_hand);
                 avatar_right_hand.transform.localPosition = Vector3.zero;
                 avatar_body.transform.SetParent(playerGlobal);
-                avatar_body.transform.localPosition = new Vector3(0, 0, -1);
+                avatar_body.transform.localPosition = new Vector3(0, -0.5f, -1);
 
                 avatar_head.SetActive(false);  // hides avatar head from player
             }

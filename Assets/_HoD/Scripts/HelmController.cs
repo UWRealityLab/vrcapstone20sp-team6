@@ -58,7 +58,7 @@ public class HelmController : MonoBehaviour
 
         ConvertHandRotationToHelmRotation();
 
-        TurnWorld();
+        //TurnWorld();
 
         //UpdateRudderPos();
 

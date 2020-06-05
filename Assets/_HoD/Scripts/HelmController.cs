@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Xml.Serialization;
 using Photon.Pun;
 using UnityEngine;
+using UnityStandardAssets._2D;
 
 [RequireComponent(typeof(PhotonView))]
 public class HelmController : MonoBehaviour
@@ -31,17 +32,24 @@ public class HelmController : MonoBehaviour
 
     // Turn dampening, lower number makes the world take longer time to reach target rotation
     // For world to just copy steering helm movement use high number like 9999
-    private float turnDampening = 1.2f;
+    private float turnDampening = 0.6f;
 
     public Transform directionalObject;
 
     //private int numberOfHandsOnHelm = 0;
+
+    private bool reset_helm = false;
+
+    private Transform reset_transform;
+
+    public float pub_turn;
 
     // Start is called before the first frame update
     void Start()
     {
         PV = GetComponent<PhotonView>();
         worldRigidbody = world.GetComponent<Rigidbody>();
+        reset_transform = transform;
     }
 
     // Update is called once per frame
@@ -60,23 +68,41 @@ public class HelmController : MonoBehaviour
 
         //TurnWorld();
 
-        //UpdateRudderPos();
+        UpdateRudderPos();
 
-        currentHelmRotation = -transform.rotation.eulerAngles.z;
+        //currentHelmRotation = -transform.rotation.eulerAngles.z;
     }
 
 
     private void UpdateRudderPos()
     {
-        var turn = transform.rotation.eulerAngles.z;
-        if (turn < -350)
+        pub_turn = transform.rotation.eulerAngles.z;
+
+        var turn = pub_turn;
+        if (turn > 359)
         {
-            turn = turn + 360;
+            turn = turn - 360;
         }
-        Vector3.Slerp(rudder.transform.forward, Quaternion.Euler(0, turn, 0) * rudder.transform.forward, Time.deltaTime * turnDampening);
+
+        if (turn > 120)
+        {
+            turn = 120;
+            reset_helm = true;
+            
+        }
+        if (turn < -120)
+        {
+            turn = -120;
+            reset_helm = true;
+
+        }
+        currentHelmRotation = turn;
+        // this works for vector position, but we need rotation
+        //rudder.transform.position = Vector3.Slerp(rudder.transform.forward, Quaternion.Euler(0, turn, 0) * rudder.transform.forward, Time.deltaTime * turnDampening);
+        rudder.transform.rotation = Quaternion.Slerp(rudder.rotation, Quaternion.Euler(0, turn * 0.15f, 0), Time.deltaTime * turnDampening);
     }
 
-
+    /*
     private void TurnWorld()
     {
         //Turns world compared to the helm
@@ -87,7 +113,7 @@ public class HelmController : MonoBehaviour
         }
 
         worldRigidbody.MoveRotation(Quaternion.RotateTowards(world.transform.rotation, Quaternion.Euler(0, turn, 0), Time.deltaTime * turnDampening));
-    }
+    }*/
 
     private void ConvertHandRotationToHelmRotation()
     {
@@ -138,6 +164,12 @@ public class HelmController : MonoBehaviour
         {
             // reset helm to not be parent of directional object
             transform.parent = null;
+        }
+
+        if (reset_helm)
+        {
+            transform.rotation = reset_transform.rotation;
+            reset_helm = false;
         }
     }
 

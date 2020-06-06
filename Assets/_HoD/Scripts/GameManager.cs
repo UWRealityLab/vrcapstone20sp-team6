@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 using Photon.Pun;
 using Photon.Realtime;
+using Com.Udomugo.HoD;
 
 namespace Com.Udomugo.OculusVRTutorial
 {
@@ -37,9 +38,11 @@ namespace Com.Udomugo.OculusVRTutorial
 
         private void Start()
         {
+            /*
             Cursor.visible = false;
 
             Screen.SetResolution(1920, 1080, false);
+            */
 
             Instance = this;
             if (playerPrefab == null && playerPrefabVR == null)
@@ -77,6 +80,7 @@ namespace Com.Udomugo.OculusVRTutorial
             {
                 Debug.LogError("PhotonNetwork : Trying to Load a level but we are not the master Client");
                 PhotonNetwork.LoadLevel("Room for " + PhotonNetwork.CurrentRoom.PlayerCount);
+
             }
         }
 

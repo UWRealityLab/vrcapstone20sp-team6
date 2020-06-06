@@ -14,30 +14,25 @@ namespace Com.Udomugo.HoD
 
         private void Start()
         {
-            trans = GetComponent<Transform>();
             m_PhotonView = GetComponent<PhotonView>();
         }
-        void Update()
-        {
 
-        }
 
         public override void OnPlayerEnteredRoom(Player other)
         {
             //Debug.LogFormat("OnPlayerEnteredRoom() {0}", other.NickName);   // not seeen if you're the player connecting
 
-            if (m_PhotonView.IsMine)
+            if (PhotonNetwork.IsMasterClient)
             {
-                m_PhotonView.RPC("WorldUpdate", RpcTarget.OthersBuffered, trans.position, trans.rotation);
+                m_PhotonView.RPC("WorldUpdate", RpcTarget.Others, transform.position, transform.rotation);
             }
         }
 
         [PunRPC]
         void WorldUpdate(Vector3 world_pos, Quaternion world_rotation)
         {
-            Debug.Log("World update");
-            trans.position = world_pos;
-            trans.rotation = world_rotation;
+            transform.position = world_pos;
+            transform.rotation = world_rotation;
         }
     }
 }

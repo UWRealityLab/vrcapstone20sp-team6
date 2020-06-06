@@ -19,6 +19,7 @@ namespace Com.Udomugo.HoD
             this.m_Body = GetComponent<Rigidbody>();
             this.m_PhotonView = GetComponent<PhotonView>();
             this.m_Grab = GetComponent<OVRGrabbable>();
+            /*
             if (this.m_Grab.isGrabbed)
             {
                 if (!this.m_PhotonView.IsMine)
@@ -28,7 +29,7 @@ namespace Com.Udomugo.HoD
                 this.m_Body.useGravity = false;
                 // Already accounted for in OVR Grabbable
                 //this.m_Body.isKinematic = true;
-                //m_PhotonView.RPC("ChangeGravity", RpcTarget.All, false);
+                m_PhotonView.RPC("ChangeGravity", RpcTarget.All, false);
             }
             else
             {
@@ -38,8 +39,9 @@ namespace Com.Udomugo.HoD
                 }
                 this.m_Body.useGravity = true;
                 //this.m_Body.isKinematic = false;
-                //m_PhotonView.RPC("ChangeGravity", RpcTarget.All, true);
+                m_PhotonView.RPC("ChangeGravity", RpcTarget.All, true);
             }
+            */
         }
 
         public void FixedUpdate()
@@ -54,7 +56,7 @@ namespace Com.Udomugo.HoD
                     }
                     this.m_Body.useGravity = false;
                     //this.m_Body.isKinematic = true;
-                    //m_PhotonView.RPC("ChangeGravity", RpcTarget.All, false);
+                    m_PhotonView.RPC("ChangeGravity", RpcTarget.All, false);
                 }
                 else
                 {
@@ -64,18 +66,17 @@ namespace Com.Udomugo.HoD
                     }
                     this.m_Body.useGravity = true;
                     //this.m_Body.isKinematic = false;
-                    //m_PhotonView.RPC("ChangeGravity", RpcTarget.All, true);
+                    m_PhotonView.RPC("ChangeGravity", RpcTarget.All, true);
                 }
             }
         }
-        /*
+
         [PunRPC]
         void ChangeGravity(bool grabbed)
         {
             this.m_Body.useGravity = grabbed;
             this.m_Body.isKinematic = !grabbed;
         }
-        */
 
 
         public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)

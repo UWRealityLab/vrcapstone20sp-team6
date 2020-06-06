@@ -37,11 +37,7 @@ namespace Com.Udomugo.HoD
             }
             else
             {
-                if (!this.m_PhotonView.IsMine) // Cannot update object information if we don't own the photonview
-                {
-                    this.m_PhotonView.RequestOwnership();
-                }
-                if (!this.m_Body.isKinematic) // Check to make sure ovrgrabbable has already changed kinematic info
+                if (this.m_PhotonView.IsMine && !this.m_Body.isKinematic) // Check to make sure ovrgrabbable has already changed kinematic info
                 {
                     m_PhotonView.RPC("ChangeKinematic", RpcTarget.Others, this.m_Body.isKinematic);
                 }

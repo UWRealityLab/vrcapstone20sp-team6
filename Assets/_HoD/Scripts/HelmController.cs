@@ -83,19 +83,19 @@ public class HelmController : MonoBehaviour
 
         if (!reset_helm)
         {
-            if (turn >= 121)
+            if (turn >= 271)
             {
                 turn = turn - 360;
             }
 
-            if (turn > 120)
+            if (turn > 270)
             {
-                turn = 120;
+                turn = 270;
                 reset_helm = true;
             }
-            if (turn < -120)
+            if (turn < -270)
             {
-                turn = -120;
+                turn = -270;
                 reset_helm = true;
             }
         }
@@ -103,7 +103,7 @@ public class HelmController : MonoBehaviour
         currentHelmRotation = turn;
         // this works for vector position, but we need rotation
         //rudder.transform.position = Vector3.Slerp(rudder.transform.forward, Quaternion.Euler(0, turn, 0) * rudder.transform.forward, Time.deltaTime * turnDampening);
-        rudder.transform.rotation = Quaternion.Slerp(rudder.rotation, Quaternion.Euler(0, turn, 0), Time.deltaTime * turnDampening);
+        rudder.transform.rotation = Quaternion.Slerp(rudder.rotation, Quaternion.Euler(0, turn * 0.15f, 0), Time.deltaTime * turnDampening);
     }
 
     /*

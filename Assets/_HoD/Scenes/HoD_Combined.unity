@@ -239,7 +239,7 @@ GameObject:
   - component: {fileID: 136359774}
   - component: {fileID: 136359773}
   - component: {fileID: 136359777}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: left_hand
   m_TagString: PlayerHand
   m_Icon: {fileID: 0}
@@ -1013,7 +1013,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 358243266}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -2961,7 +2961,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1248971735}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -3418,7 +3418,7 @@ GameObject:
   - component: {fileID: 1471186627}
   - component: {fileID: 1471186626}
   - component: {fileID: 1471186629}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: right_hand
   m_TagString: PlayerHand
   m_Icon: {fileID: 0}

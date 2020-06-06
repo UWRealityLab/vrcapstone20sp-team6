@@ -8,13 +8,14 @@ namespace Com.Udomugo.HoD
 {
     [RequireComponent(typeof(Rigidbody))]
     [RequireComponent(typeof(OVRGrabbable))]
-    public class PhotonObjectSync : MonoBehaviour, IPunObservable
+    [RequireComponent(typeof(PhotonView))]
+    public class PhotonObjectSync : MonoBehaviour
     {
         private Rigidbody m_Body;
         private PhotonView m_PhotonView;
         private OVRGrabbable m_Grab;
 
-        public void Awake()
+        public void Start()
         {
             this.m_Body = GetComponent<Rigidbody>();
             this.m_PhotonView = GetComponent<PhotonView>();
@@ -44,29 +45,32 @@ namespace Com.Udomugo.HoD
             */
         }
 
-        public void FixedUpdate()
+        public void Update()
         {
-            if (!this.m_PhotonView.IsMine)
+            if (this.m_Grab.isGrabbed)
             {
-                if (this.m_Grab.isGrabbed)
+                if (!this.m_PhotonView.IsMine)
                 {
-                    if (!this.m_PhotonView.IsMine)
-                    {
-                        this.m_PhotonView.RequestOwnership();
-                    }
+                    this.m_PhotonView.RequestOwnership();
+                }
+                if (this.m_Body.useGravity == true)
+                {
                     this.m_Body.useGravity = false;
                     //this.m_Body.isKinematic = true;
-                    m_PhotonView.RPC("ChangeGravity", RpcTarget.All, false);
+                    m_PhotonView.RPC("ChangeGravity", RpcTarget.All, this.m_Body.useGravity);
                 }
-                else
+            }
+            else
+            {
+                if (!this.m_PhotonView.IsMine)
                 {
-                    if (!this.m_PhotonView.IsMine)
-                    {
-                        this.m_PhotonView.RequestOwnership();
-                    }
+                    this.m_PhotonView.RequestOwnership();
+                }
+                if (this.m_Body.useGravity == false)
+                {
                     this.m_Body.useGravity = true;
                     //this.m_Body.isKinematic = false;
-                    m_PhotonView.RPC("ChangeGravity", RpcTarget.All, true);
+                    m_PhotonView.RPC("ChangeGravity", RpcTarget.All, this.m_Body.useGravity);
                 }
             }
         }
@@ -76,21 +80,6 @@ namespace Com.Udomugo.HoD
         {
             this.m_Body.useGravity = grabbed;
             this.m_Body.isKinematic = !grabbed;
-        }
-
-
-        public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
-        {
-            if (stream.IsWriting)
-            {
-                stream.SendNext(this.m_Body.useGravity);
-                //stream.SendNext(this.m_Body.isKinematic);
-            }
-            else
-            {
-                this.m_Body.useGravity = (bool)stream.ReceiveNext();
-                //this.m_Body.isKinematic = (bool)stream.ReceiveNext();
-            }
         }
 
     }

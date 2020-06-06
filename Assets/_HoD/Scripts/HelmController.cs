@@ -44,17 +44,23 @@ public class HelmController : MonoBehaviour
 
     public float pub_turn;
 
+    private float _syntheticAngle = float.NaN;
+    private float _prevAngle = float.NaN;
+    public float helm_wheel_ang;
+
     // Start is called before the first frame update
     void Start()
     {
         PV = GetComponent<PhotonView>();
         worldRigidbody = world.GetComponent<Rigidbody>();
         reset_transform = transform;
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        UpdateAngle();
         // Method that restores hands original position in their parent object
         ReleaseHandsFromHelm();
 
@@ -73,6 +79,28 @@ public class HelmController : MonoBehaviour
         //currentHelmRotation = -transform.rotation.eulerAngles.z;
     }
 
+    void UpdateAngle()
+    {
+        helm_wheel_ang = transform.localEulerAngles.z;
+        helm_wheel_ang = (helm_wheel_ang > 180) ? helm_wheel_ang - 360 : helm_wheel_ang;
+        if (float.IsNaN(_syntheticAngle))
+        {
+            _syntheticAngle = helm_wheel_ang;
+            _prevAngle = helm_wheel_ang;
+        }
+        float dAngle = helm_wheel_ang - _prevAngle;
+        if (dAngle < -180)
+        {
+            // eg it hopped from -170 to +170
+            dAngle += 360;
+        }
+        else if (dAngle > 180)
+        {
+            // eg it hopped from +170 to -170
+            dAngle -= 360;
+        }
+        _syntheticAngle += dAngle;
+    }
 
     private void UpdateRudderPos()
     {
@@ -80,7 +108,7 @@ public class HelmController : MonoBehaviour
 
 
         var turn = pub_turn;
-
+        /*
         if (!reset_helm)
         {
             if (turn >= 271)
@@ -99,11 +127,11 @@ public class HelmController : MonoBehaviour
                 reset_helm = true;
             }
         }
-        
+        */
         currentHelmRotation = turn;
         // this works for vector position, but we need rotation
         //rudder.transform.position = Vector3.Slerp(rudder.transform.forward, Quaternion.Euler(0, turn, 0) * rudder.transform.forward, Time.deltaTime * turnDampening);
-        rudder.transform.rotation = Quaternion.Slerp(rudder.rotation, Quaternion.Euler(0, turn, 0), Time.deltaTime * turnDampening);
+        rudder.transform.rotation = Quaternion.Slerp(rudder.rotation, Quaternion.Euler(0, helm_wheel_ang * 0.3f, 0), Time.deltaTime * turnDampening);
     }
 
     /*
@@ -168,7 +196,7 @@ public class HelmController : MonoBehaviour
         {
             // reset helm to not be parent of directional object
             transform.parent = null;
-            transform.rotation = Quaternion.Slerp(transform.rotation, reset_transform.rotation, Time.deltaTime * 240);
+            //transform.rotation = Quaternion.Slerp(transform.rotation, reset_transform.rotation, Time.deltaTime * 240);
         }
 
         

@@ -137,7 +137,7 @@ public class SailRelativeController : MonoBehaviour
         Debug.DrawLine(ship.transform.position + (ship.transform.up * 10), rotate_count_vec * 50, Color.cyan);
         Debug.DrawLine(ship.transform.position + (ship.transform.up * 10), down_wind * 50, Color.blue);
 
-        rb.velocity = Vector3.ClampMagnitude(rb.velocity, 10);
+        rb.velocity = Vector3.ClampMagnitude(rb.velocity, 5);
     }
 
     private void FixedUpdate()
@@ -166,7 +166,7 @@ public class SailRelativeController : MonoBehaviour
             
             // Forces on world to give appearecne of turning with momentum
             rb.AddForce(-ship.transform.forward * rudder_power_cross * (Mathf.Cos(rudder_angle) * rb.velocity.magnitude) * trim_power * wind_power * sail_power, ForceMode.Acceleration);
-            //rb.AddForce(rotate_count_vec * rudder_power_cross * trim_power * wind_power, ForceMode.Acceleration);
+            rb.AddForce(rotate_count_vec * rudder_power_cross * rb.velocity.magnitude * 0.1f, ForceMode.Acceleration);
             rb.AddForce(heading_rudder * rudder_power_cross * (Mathf.Sin(rudder_angle) * rb.velocity.magnitude) * 0.2f * trim_power * wind_power * sail_power, ForceMode.Acceleration);
 
 

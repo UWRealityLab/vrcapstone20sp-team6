@@ -1,13 +1,19 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Xml.Serialization;
 using Photon.Pun;
+using UnityEditor.XR;
 using UnityEngine;
 using UnityStandardAssets._2D;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(PhotonView))]
 public class HelmController : MonoBehaviour
 {
+    public Text axile_info;
+    public Text direction_info;
+
     private PhotonView PV;
 
     // Righthand
@@ -44,9 +50,22 @@ public class HelmController : MonoBehaviour
 
     public float pub_turn;
 
+    public float rudd_turn;
+
     private float _syntheticAngle = float.NaN;
     private float _prevAngle = float.NaN;
     public float helm_wheel_ang;
+    public float helm_wheel_dir;
+
+    private Quaternion last_rot;
+
+    public bool is_bounded_left;
+    public bool is_bounded_right;
+    private bool trend_pos;
+    private bool start;
+
+    public int num_rots_left;
+    public int num_rots_right;
 
     // Start is called before the first frame update
     void Start()
@@ -54,13 +73,25 @@ public class HelmController : MonoBehaviour
         PV = GetComponent<PhotonView>();
         worldRigidbody = world.GetComponent<Rigidbody>();
         reset_transform = transform;
-
+        last_rot = Quaternion.identity;
+        //directional_object = directionalObject.transform;
+        rudd_turn = 0;
+        is_bounded_left = false;
+        is_bounded_right = false;
+        num_rots_left = 0;
+        num_rots_right = 0;
+        start = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        UpdateAngle();
+        axile_info.text = helm_wheel_ang.ToString();
+        direction_info.text = directionalObject.localEulerAngles.z.ToString();
+        //UpdateBounds();
+        last_rot = transform.rotation;
+        //directional_object = directionalObject.transform;
+        //UpdateAngle();
         // Method that restores hands original position in their parent object
         ReleaseHandsFromHelm();
 
@@ -74,14 +105,37 @@ public class HelmController : MonoBehaviour
 
         //TurnWorld();
 
-        UpdateRudderPos();
+        //UpdateRudderPos();
 
         //currentHelmRotation = -transform.rotation.eulerAngles.z;
     }
 
-    void UpdateAngle()
+    void UpdateBounds ()
     {
-        helm_wheel_ang = transform.localEulerAngles.z;
+        //helm_wheel_ang = transform.localEulerAngles.z;
+
+        // initializing the turn trend
+        if (start)
+        {
+            trend_pos = (helm_wheel_ang > 0) ? true : false;
+            start = false;
+        }
+
+        if (helm_wheel_ang > 170)
+        {
+            helm_wheel_ang = 170;
+            transform.rotation = Quaternion.Slerp(Quaternion.Euler(0, 0, transform.localEulerAngles.z), Quaternion.Euler(0, 0, 160), 0.7f);
+        } else if (helm_wheel_ang < -170)
+        {
+            helm_wheel_ang = -170;
+            transform.rotation = Quaternion.Slerp(Quaternion.Euler(0, 0, transform.localEulerAngles.z), Quaternion.Euler(0, 0, -160), 0.7f);
+        }
+    }
+
+    void UpdateAngle(Quaternion q)
+    {
+        
+        helm_wheel_ang = q.eulerAngles.z;
         helm_wheel_ang = (helm_wheel_ang > 180) ? helm_wheel_ang - 360 : helm_wheel_ang;
         if (float.IsNaN(_syntheticAngle))
         {
@@ -100,14 +154,41 @@ public class HelmController : MonoBehaviour
             dAngle -= 360;
         }
         _syntheticAngle += dAngle;
+        
+
     }
 
-    private void UpdateRudderPos()
+    void UpdateAngleDir(Transform t)
     {
-        pub_turn = transform.rotation.eulerAngles.z;
+        helm_wheel_dir = t.transform.localEulerAngles.z;
+        helm_wheel_dir = (helm_wheel_dir > 180) ? helm_wheel_dir - 360 : helm_wheel_dir;
+        if (float.IsNaN(_syntheticAngle))
+        {
+            _syntheticAngle = helm_wheel_dir;
+            _prevAngle = helm_wheel_dir;
+        }
+        float dAngle = helm_wheel_dir - _prevAngle;
+        if (dAngle < -180)
+        {
+            // eg it hopped from -170 to +170
+            dAngle += 360;
+        }
+        else if (dAngle > 180)
+        {
+            // eg it hopped from +170 to -170
+            dAngle -= 360;
+        }
+        _syntheticAngle += dAngle;
+    }
 
+    private void UpdateRudderPos(int flux)
+    {
+        //rudd_turn = rudder.transform.localEulerAngles.y;
+        //rudd_turn += helm_wheel_ang * 0.15f;
+        //pub_turn = directionalObject.eulerAngles.z;
+        rudd_turn += (helm_wheel_ang * 0.15f * Time.deltaTime)/flux;
 
-        var turn = pub_turn;
+        //var turn = pub_turn;
         /*
         if (!reset_helm)
         {
@@ -128,10 +209,13 @@ public class HelmController : MonoBehaviour
             }
         }
         */
-        currentHelmRotation = turn;
+        //currentHelmRotation = turn;
         // this works for vector position, but we need rotation
         //rudder.transform.position = Vector3.Slerp(rudder.transform.forward, Quaternion.Euler(0, turn, 0) * rudder.transform.forward, Time.deltaTime * turnDampening);
-        rudder.transform.rotation = Quaternion.Slerp(rudder.rotation, Quaternion.Euler(0, helm_wheel_ang * 0.3f, 0), Time.deltaTime * turnDampening);
+
+        //// last working method
+        //rudder.transform.rotation = Quaternion.Slerp(rudder.rotation, Quaternion.Euler(0, helm_wheel_ang * 0.015f, 0), Time.deltaTime * turnDampening);
+        rudder.transform.rotation = Quaternion.Euler(0, rudd_turn * 7f, 0);
     }
 
     /*
@@ -149,26 +233,66 @@ public class HelmController : MonoBehaviour
 
     private void ConvertHandRotationToHelmRotation()
     {
+        bool maxTurn = (helm_wheel_dir > 0 && helm_wheel_ang > 350) || (helm_wheel_dir < 0 && helm_wheel_ang < -350);
         if (rightHandOnHelm == true && leftHandOnHelm == false)
         {
-            Quaternion newRot = Quaternion.Euler(0, 0, rightHandOriginalParent.transform.rotation.eulerAngles.z);
-            directionalObject.rotation = newRot;
-            transform.parent = directionalObject;
+            UpdateAngleDir(rightHandOriginalParent);
+            if (!maxTurn)
+            {
+                Quaternion newRot = Quaternion.Euler(0, 0, rightHandOriginalParent.transform.rotation.eulerAngles.z);
+                directionalObject.rotation = newRot;
+                UpdateAngle(newRot);
+                if (helm_wheel_ang >= -170 && helm_wheel_ang <= 170)
+                {
+                    transform.parent = directionalObject;
+                    
+                } else
+                {
+                    helm_wheel_ang = (helm_wheel_ang > 0) ? 170 : -170;
+                }
+                
+            }
         }
         else if (rightHandOnHelm == false && leftHandOnHelm == true)
         {
-            Quaternion newRot = Quaternion.Euler(0, 0, leftHandOriginalParent.transform.rotation.eulerAngles.z);
-            directionalObject.rotation = newRot;
-            transform.parent = directionalObject;
+            UpdateAngleDir(rightHandOriginalParent);
+            if (!maxTurn)
+            {
+                Quaternion newRot = Quaternion.Euler(0, 0, leftHandOriginalParent.transform.rotation.eulerAngles.z);
+                directionalObject.rotation = newRot;
+                UpdateAngle(newRot);
+                if (helm_wheel_ang >= -170 && helm_wheel_ang <= 170)
+                {
+                    transform.parent = directionalObject;
+                    
+                }
+                else
+                {
+                    helm_wheel_ang = (helm_wheel_ang > 0) ? 170 : -170;
+                }
+            }
         }
         else
         if (rightHandOnHelm == true && leftHandOnHelm == true)
         {
-            Quaternion newRotLeft = Quaternion.Euler(0, 0, leftHandOriginalParent.transform.rotation.eulerAngles.z);
-            Quaternion newRotRight = Quaternion.Euler(0, 0, rightHandOriginalParent.transform.rotation.eulerAngles.z);
-            Quaternion finalRot = Quaternion.Slerp(newRotLeft, newRotRight, 1.0f / 2.0f);
-            directionalObject.rotation = finalRot;
-            transform.parent = directionalObject;
+            UpdateAngleDir(rightHandOriginalParent);
+            if (!maxTurn)
+            {
+                Quaternion newRotLeft = Quaternion.Euler(0, 0, leftHandOriginalParent.transform.rotation.eulerAngles.z);
+                Quaternion newRotRight = Quaternion.Euler(0, 0, rightHandOriginalParent.transform.rotation.eulerAngles.z);
+                Quaternion finalRot = Quaternion.Slerp(newRotLeft, newRotRight, 1.0f / 2.0f);
+                directionalObject.rotation = finalRot;
+                UpdateAngle(finalRot);
+                if (helm_wheel_ang >= -170 && helm_wheel_ang <= 170)
+                {
+                    transform.parent = directionalObject;
+                    UpdateRudderPos(50);
+                }
+                else
+                {
+                    helm_wheel_ang = (helm_wheel_ang > 0) ? 170 : -170;
+                }
+            }
         }
     }
 
@@ -181,6 +305,8 @@ public class HelmController : MonoBehaviour
             righthand.transform.rotation = rightHandOriginalParent.rotation;
             rightHandOnHelm = false;
             //numberOfHandsOnHelm--;
+            //helm_wheel_ang = 0;
+            UpdateRudderPos(1);
         }
 
         if (leftHandOnHelm == true && OVRInput.GetUp(OVRInput.Button.PrimaryHandTrigger, OVRInput.Controller.LTouch))
@@ -190,13 +316,17 @@ public class HelmController : MonoBehaviour
             lefthand.transform.rotation = leftHandOriginalParent.rotation;
             leftHandOnHelm = false;
             //numberOfHandsOnHelm--;
+            //helm_wheel_ang = 0;
+            UpdateRudderPos(1);
+
         }
 
         if (leftHandOnHelm == false && rightHandOnHelm == false)
         {
             // reset helm to not be parent of directional object
             transform.parent = null;
-            //transform.rotation = Quaternion.Slerp(transform.rotation, reset_transform.rotation, Time.deltaTime * 240);
+            transform.rotation = Quaternion.Slerp(transform.localRotation, Quaternion.Euler(0, 0, 0), Time.deltaTime * 240);
+            helm_wheel_ang = 0;
         }
 
         

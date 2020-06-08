@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class WorldInfo : MonoBehaviour
 {
     public Text world_vel;
+    public Text world_ang_vel;
     public Text x_vel;
     public Text y_vel;
     public Text z_vel;
@@ -20,6 +21,7 @@ public class WorldInfo : MonoBehaviour
     void Update()
     {
         world_vel.text = world_rb.velocity.magnitude.ToString();
+        world_ang_vel.text = world_rb.angularVelocity.magnitude.ToString();
         x_vel.text = world_rb.velocity.x.ToString();
         y_vel.text = world_rb.velocity.y.ToString();
         z_vel.text = world_rb.velocity.z.ToString();

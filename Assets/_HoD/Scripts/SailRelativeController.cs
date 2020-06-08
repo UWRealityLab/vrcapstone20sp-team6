@@ -193,7 +193,7 @@ public class SailRelativeController : MonoBehaviour
 
 
             // This version of the line above uses a fake momentum
-            turn_speed = momentum * Time.deltaTime;
+            turn_speed = momentum * 0.3f;
             torque_angle = rudder_dir * (Mathf.Sqrt(rudder_angle)) * Time.deltaTime;
             rb.AddRelativeTorque(ship.transform.up * torque_angle * turn_speed, ForceMode.Acceleration);
 

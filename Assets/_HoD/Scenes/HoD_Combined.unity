@@ -2359,8 +2359,8 @@ GameObject:
   - component: {fileID: 836358255}
   - component: {fileID: 836358256}
   - component: {fileID: 836358258}
-  - component: {fileID: 836358257}
   - component: {fileID: 836358259}
+  - component: {fileID: 836358257}
   m_Layer: 0
   m_Name: world
   m_TagString: Untagged
@@ -2412,9 +2412,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 836358254}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf49ffe1d05988c498ce2926358401c3, type: 3}
+  m_Script: {fileID: 11500000, guid: 64179f3720bbfe947b7724caa67b7c1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_SynchronizeVelocity: 1
+  m_SynchronizeAngularVelocity: 1
+  m_TeleportEnabled: 0
+  m_TeleportIfDistanceGreaterThan: 3
 --- !u!114 &836358258
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2430,10 +2434,10 @@ MonoBehaviour:
   ObservedComponentsFoldoutOpen: 1
   Group: 0
   prefixField: -1
-  Synchronization: 0
+  Synchronization: 3
   OwnershipTransfer: 0
   ObservedComponents:
-  - {fileID: 0}
+  - {fileID: 836358257}
   viewIdField: 1
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -3302,8 +3306,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1060088770}
   - component: {fileID: 1060088771}
-  - component: {fileID: 1060088773}
-  - component: {fileID: 1060088772}
   m_Layer: 0
   m_Name: rudder
   m_TagString: Untagged
@@ -3338,43 +3340,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rudder_info: {fileID: 1187090186}
---- !u!114 &1060088772
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1060088769}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SynchronizePosition: 0
-  m_SynchronizeRotation: 1
-  m_SynchronizeScale: 0
---- !u!114 &1060088773
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1060088769}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ObservedComponentsFoldoutOpen: 1
-  Group: 0
-  prefixField: -1
-  Synchronization: 3
-  OwnershipTransfer: 0
-  ObservedComponents:
-  - {fileID: 1060088772}
-  viewIdField: 10
-  InstantiationId: 0
-  isRuntimeInstantiated: 0
 --- !u!114 &1060812518 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3438249113033724059, guid: ee8b8eb4ce267ce46b44ac056c9ace96,
@@ -4673,7 +4638,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1802587231
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5254,7 +5219,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 11400002, guid: ce816f2e6abb0504092c23ed9b970dfd, type: 3}
       propertyPath: resetTrackerOnLoad
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11400002, guid: ce816f2e6abb0504092c23ed9b970dfd, type: 3}
       propertyPath: _trackingOriginType
@@ -14108,6 +14073,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3438249113626521061, guid: ee8b8eb4ce267ce46b44ac056c9ace96,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3438249113959205345, guid: ee8b8eb4ce267ce46b44ac056c9ace96,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3438249114126106246, guid: ee8b8eb4ce267ce46b44ac056c9ace96,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -14242,6 +14217,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3438249114443525199, guid: ee8b8eb4ce267ce46b44ac056c9ace96,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3438249114849073203, guid: ee8b8eb4ce267ce46b44ac056c9ace96,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3438249114945997350, guid: ee8b8eb4ce267ce46b44ac056c9ace96,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ee8b8eb4ce267ce46b44ac056c9ace96, type: 3}

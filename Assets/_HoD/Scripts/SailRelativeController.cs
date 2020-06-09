@@ -151,7 +151,7 @@ public class SailRelativeController : MonoBehaviour
         Debug.DrawLine(ship.transform.position + (ship.transform.up * 10), rotate_count_vec * 50, Color.cyan);
         Debug.DrawLine(ship.transform.position + (ship.transform.up * 10), down_wind * 50, Color.blue);
 
-        rb.velocity = Vector3.ClampMagnitude(rb.velocity, 4);
+        rb.velocity = Vector3.ClampMagnitude(rb.velocity, 3.3f);
         last_vel = rb.velocity.magnitude;
     }
 

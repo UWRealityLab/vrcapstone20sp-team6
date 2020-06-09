@@ -33,7 +33,7 @@ namespace Com.Udomugo.OculusVRTutorial
             if (stream.IsWriting)
             {
                 // streaming position data
-                stream.SendNext(playerGlobal.position);
+                stream.SendNext(playerGlobal.localPosition);
                 stream.SendNext(playerGlobal.rotation);
                 
                 // streaming head data

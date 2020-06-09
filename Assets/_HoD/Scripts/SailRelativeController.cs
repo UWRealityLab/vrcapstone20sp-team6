@@ -62,7 +62,7 @@ public class SailRelativeController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        momentum += (rb.velocity.magnitude - last_vel) * Time.deltaTime;
+        momentum += (rb.velocity.magnitude - last_vel) * 2f * Time.deltaTime;
         if (rb.velocity.magnitude <= 0 || momentum < 0)
         {
             momentum = 0;
@@ -174,7 +174,7 @@ public class SailRelativeController : MonoBehaviour
 
             // General wind force
             
-            rb.AddForce(-ship.transform.forward * trim_power * wind_power * sail_power * (1 - (rudder_power_cross * 2.5f)), ForceMode.Acceleration);
+            rb.AddForce(-ship.transform.forward * trim_power * (wind_power + 0.1f) * sail_power * (1 - (rudder_power_cross * 2f)), ForceMode.Acceleration);
 
             // Current version to demo
             //rb.AddForceAtPosition(-ship.transform.forward * trim_power * wind_power * sail_power * (0.65f - rudder_power_cross), Vector3.zero, ForceMode.Acceleration);
@@ -193,9 +193,11 @@ public class SailRelativeController : MonoBehaviour
 
 
             // This version of the line above uses a fake momentum
-            turn_speed = momentum * 0.3f;
+            turn_speed = momentum * 0.5f;
             torque_angle = rudder_dir * (Mathf.Sqrt(rudder_angle)) * Time.deltaTime;
-            rb.AddRelativeTorque(ship.transform.up * torque_angle * turn_speed, ForceMode.Acceleration);
+            //rb.AddRelativeTorque(ship.transform.up * torque_angle * turn_speed, ForceMode.Acceleration);
+
+            world.transform.RotateAround(ship.transform.position, ship.transform.up, torque_angle * turn_speed);
 
             //rb.AddRelativeTorque(ship.transform.up * (4.5f - rb.velocity.magnitude) * 0.005f * rudder_dir * (rudder_angle) * rudder_power_cross);
             //rb.AddRelativeTorque(ship.transform.up * (4.5f - rb.velocity.magnitude) * 0.01f * rudder_dir * rudder_angle * (rudder_power_cross/2));

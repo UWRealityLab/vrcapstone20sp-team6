@@ -10,7 +10,7 @@ public class DeliverItem : MonoBehaviour
     public ParticleSystem particles;
     private bool delivered = false;
     //public GameObject firework;
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
 
         if (other.gameObject.CompareTag("Crate"))
@@ -19,7 +19,7 @@ public class DeliverItem : MonoBehaviour
             other.gameObject.SetActive(false);
 
             // removing crate from platform
-            other.gameObject.transform.parent = null;
+            other.transform.parent = null;
             other.gameObject.GetComponent<Rigidbody>().isKinematic = false;
             other.gameObject.transform.position = delivery_spot.transform.position;
             

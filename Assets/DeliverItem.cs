@@ -9,7 +9,7 @@ public class DeliverItem : MonoBehaviour
     public GameObject delivery_spot;
     public ParticleSystem[] fireworks;
     private bool delivered = false;
-    private bool setOffFireworks = false;
+    public bool setOffFireworks = false;
     //public GameObject firework;
     private void OnTriggerEnter(Collider other)
     {
@@ -45,6 +45,7 @@ public class DeliverItem : MonoBehaviour
     void Update()
     {
         if (setOffFireworks) {
+            AudioManager.instance.Play3D("fireworks", gameObject);
             for (int i = 0; i < fireworks.Length * 2; i++)
             {
                 int index = Random.Range(0, fireworks.Length - 1);

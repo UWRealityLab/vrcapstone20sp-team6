@@ -68,6 +68,8 @@ namespace Com.Udomugo.HoD
         {
             if (!PV.IsMine) { PV.RequestOwnership(); }
             sailsDown = !sailsDown;
+            AudioManager.instance.Play("sail_deploy_1");
+            AudioManager.instance.Play("sail_deploy_2");
             PV.RPC("RaiseLowerSailsRPC", RpcTarget.OthersBuffered, sailsDown);
         }
 
@@ -151,30 +153,46 @@ namespace Com.Udomugo.HoD
             {
                 crank.transform.Rotate(0f, 3f, 0f);
                 crankTurns++;
+                AudioManager.instance.Play("anchor");
                 // crank.transform.localEulerAngles = new Vector3(0f, crank.transform.rotation.y + 2f, 0f);
             }
             else if (!anchorDown && crankTurns > 0)
             {
                 crank.transform.Rotate(0f, -3f, 0f);
                 crankTurns--;
+                AudioManager.instance.Play("anchor");
+            }
+            else
+            {
+                AudioManager.instance.Stop("anchor");
             }
 
             if (hoistDown)
             {
                 if (cableScale < 70)
                 {
+                    AudioManager.instance.Play("hoist");
                     cableScale++;
                     hoistCable.transform.localScale = new Vector3(0.06936289f, 4.8f * (cableScale / 70f), 0.06936289f);
                     hoistPlatform.transform.Translate(0f, -0.042f, 0f);
+                }
+                else
+                {
+                    AudioManager.instance.Stop("hoist");
                 }
             }
             else
             {
                 if (cableScale > 10)
                 {
+                    AudioManager.instance.Play("hoist");
                     cableScale--;
                     hoistCable.transform.localScale = new Vector3(0.06936289f, 4.8f * (cableScale / 70f) + ((10 / cableScale) * 0.314f), 0.06936289f);
                     hoistPlatform.transform.Translate(0f, 0.042f, 0f);
+                }
+                else
+                {
+                    AudioManager.instance.Stop("hoist");
                 }
             }
 
@@ -190,6 +208,16 @@ namespace Com.Udomugo.HoD
                     mizzenSail.SetActive(true);
                     mizzenSail.GetComponent<SkinnedMeshRenderer>().enabled = true;
                 }
+                AudioManager.instance.Play("sail_flap_1");
+                AudioManager.instance.Play("sail_flap_2");
+                if (!anchorDown)
+                {
+                    AudioManager.instance.Play("splash_calm");
+                }
+                else
+                {
+                    AudioManager.instance.Stop("splash_calm");
+                }
             }
             else
             {
@@ -203,6 +231,9 @@ namespace Com.Udomugo.HoD
                     mizzenSail.SetActive(false);
                     mizzenSail.GetComponent<SkinnedMeshRenderer>().enabled = false;
                 }
+                AudioManager.instance.Stop("sail_flap_1");
+                AudioManager.instance.Stop("sail_flap_2");
+                AudioManager.instance.Stop("splash_calm");
             }
         }
 

@@ -23,10 +23,7 @@ public class AudioManager : MonoBehaviour
 
 		foreach (Sound s in sounds)
 		{
-			if (s.playOnAwake || s.parent == null)
-			{
-				Initiate(s);
-			}
+			Initiate(s);
 		}
 	}
 
@@ -68,7 +65,7 @@ public class AudioManager : MonoBehaviour
 	}
 
 	// Play a fully non-spatial sound
-	public void Play2D(string sound)
+	public void Play(string sound)
 	{
 		Sound s = FindSound(sound);
 		if (s == null)

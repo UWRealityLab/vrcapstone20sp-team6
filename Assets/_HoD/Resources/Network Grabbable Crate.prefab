@@ -549,6 +549,7 @@ GameObject:
   - component: {fileID: 5862650672906142112}
   - component: {fileID: 5862650672906142119}
   - component: {fileID: 5862650672906142118}
+  - component: {fileID: -6865676780921860802}
   m_Layer: 10
   m_Name: Network Grabbable Crate
   m_TagString: Crate
@@ -749,6 +750,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a3a812bb8cdbe644c90a2527c6099271, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-6865676780921860802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5862650672906142126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5df609787ba585242a3003ee920cefd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &5862650673205404226

@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class SailRelativeController : MonoBehaviour
 {
@@ -19,6 +20,10 @@ public class SailRelativeController : MonoBehaviour
     public float dot_wind;
     public float wind_angle;
     public float rudder_angle;
+    public float momentum;
+    public float last_vel;
+    public float turn_speed;
+    public float torque_angle;
 
 
     private GameObject world;
@@ -47,12 +52,21 @@ public class SailRelativeController : MonoBehaviour
 
         rb = world.GetComponent<Rigidbody>();
 
+        rb.maxAngularVelocity = 3.0f;
+        momentum = 0;
+        last_vel = rb.velocity.magnitude;
+
         //anchor.is_set = true;
     }
 
     // Update is called once per frame
     void Update()
     {
+        momentum += (rb.velocity.magnitude - last_vel) * Time.deltaTime;
+        if (rb.velocity.magnitude <= 0 || momentum < 0)
+        {
+            momentum = 0;
+        }
         anchor_isDown = ship_actions.anchorDown;
         rb.centerOfMass = ship.transform.position - world.transform.position;
         //world.GetComponent<Collider>().transform.position = ship.transform.position - world.transform.position;
@@ -137,7 +151,8 @@ public class SailRelativeController : MonoBehaviour
         Debug.DrawLine(ship.transform.position + (ship.transform.up * 10), rotate_count_vec * 50, Color.cyan);
         Debug.DrawLine(ship.transform.position + (ship.transform.up * 10), down_wind * 50, Color.blue);
 
-        rb.velocity = Vector3.ClampMagnitude(rb.velocity, 10);
+        rb.velocity = Vector3.ClampMagnitude(rb.velocity, 4);
+        last_vel = rb.velocity.magnitude;
     }
 
     private void FixedUpdate()
@@ -157,12 +172,42 @@ public class SailRelativeController : MonoBehaviour
                 rotate_count_vec = rudder.transform.right;
             }
 
-            rb.AddForce(-ship.transform.forward * trim_power * wind_power * sail_power * (0.7f - rudder_power_cross), ForceMode.Acceleration);
-            world.transform.Rotate(Vector3.up, Mathf.Max(rudder_angle - (Mathf.Pow(rudder_angle, -2)), 0) * rudder_dir * 0.01f * rb.velocity.magnitude * wind_power * Time.deltaTime, Space.World);
-            //rb.MoveRotation(Quaternion.RotateTowards(world.transform.rotation, Quaternion.Euler(0, rudder_angle * rudder_dir, 0), Time.deltaTime * wind_power + trim_power));
-            rb.AddForce(-ship.transform.forward * rudder_power_cross * trim_power * wind_power * sail_power, ForceMode.Acceleration);
-            //rb.AddForce(rotate_count_vec * rudder_power_cross * trim_power * wind_power, ForceMode.Acceleration);
-            rb.AddForce(heading_rudder * rudder_power_cross * trim_power * wind_power * sail_power, ForceMode.Acceleration);
+            // General wind force
+            
+            rb.AddForce(-ship.transform.forward * trim_power * wind_power * sail_power * (1 - (rudder_power_cross * 2.5f)), ForceMode.Acceleration);
+
+            // Current version to demo
+            //rb.AddForceAtPosition(-ship.transform.forward * trim_power * wind_power * sail_power * (0.65f - rudder_power_cross), Vector3.zero, ForceMode.Acceleration);
+
+            // Rotating world during turn
+            // this one works --> world.transform.Rotate(Vector3.up, Mathf.Max(rudder_angle - (Mathf.Pow(rudder_angle, -2)), 0) * rudder_dir * 0.01f * rb.velocity.magnitude * wind_power * Time.deltaTime, Space.World);
+
+            // this one causes jitters --> rb.AddRelativeTorque(Vector3.Cross(world.transform.position, ship.transform.forward) * (4.5f - rb.velocity.magnitude) * rudder_dir);
+
+            // Mostly working
+            //rb.AddRelativeTorque(ship.transform.up * (4.5f - rb.velocity.magnitude) * 0.005f  * rudder_dir * (rudder_angle) * rudder_power_cross);
+
+            // changing velocity is smoother than adding acceleration.
+            //rb.AddRelativeTorque(ship.transform.up * rudder_dir * rudder_angle * Mathf.Max((3.5f - rb.velocity.magnitude), 0.2f) * 0.001f * Time.deltaTime, ForceMode.VelocityChange);
+            // this is now negative so steering is reversed until the ship slows down too much.
+
+
+            // This version of the line above uses a fake momentum
+            turn_speed = momentum * 0.3f;
+            torque_angle = rudder_dir * (Mathf.Sqrt(rudder_angle)) * Time.deltaTime;
+            rb.AddRelativeTorque(ship.transform.up * torque_angle * turn_speed, ForceMode.Acceleration);
+
+            //rb.AddRelativeTorque(ship.transform.up * (4.5f - rb.velocity.magnitude) * 0.005f * rudder_dir * (rudder_angle) * rudder_power_cross);
+            //rb.AddRelativeTorque(ship.transform.up * (4.5f - rb.velocity.magnitude) * 0.01f * rudder_dir * rudder_angle * (rudder_power_cross/2));
+
+            //world.transform.Rotate(Vector3.up, (rudder_angle*  rudder_dir) + (rudder_power_cross * rb.velocity.magnitude) * wind_power * Time.deltaTime, Space.World);
+
+            /*
+            // Forces on world to give appearecne of turning with momentum
+            rb.AddForce(-ship.transform.forward * rudder_power_cross * (Mathf.Cos(rudder_angle) * rb.velocity.magnitude) * trim_power * wind_power * sail_power, ForceMode.Acceleration);
+            rb.AddForce(rotate_count_vec * rudder_power_cross * rb.velocity.magnitude * 0.1f, ForceMode.Acceleration);
+            rb.AddForce(heading_rudder * rudder_power_cross * (Mathf.Sin(rudder_angle) * rb.velocity.magnitude) * 0.2f * trim_power * wind_power * sail_power, ForceMode.Acceleration);
+            */
 
 
             //world.transform.SetPositionAndRotation(ship.transform.position - world.transform.forward, world.transform.rotation);
@@ -172,7 +217,9 @@ public class SailRelativeController : MonoBehaviour
 
         } else
         {
-            rb.AddForce(-rb.velocity * 0.9f, ForceMode.VelocityChange);
+            rb.AddForce(-rb.velocity * 0.97f, ForceMode.VelocityChange);
+            float ang = rb.angularVelocity.magnitude;
+            
         }
     }
 }

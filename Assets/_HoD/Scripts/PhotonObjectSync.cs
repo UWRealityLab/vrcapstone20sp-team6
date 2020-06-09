@@ -8,88 +8,47 @@ namespace Com.Udomugo.HoD
 {
     [RequireComponent(typeof(Rigidbody))]
     [RequireComponent(typeof(OVRGrabbable))]
-    public class PhotonObjectSync : MonoBehaviour, IPunObservable
+    [RequireComponent(typeof(PhotonView))]
+    public class PhotonObjectSync : MonoBehaviour
     {
         private Rigidbody m_Body;
         private PhotonView m_PhotonView;
         private OVRGrabbable m_Grab;
 
-        public void Awake()
+        public void Start()
         {
             this.m_Body = GetComponent<Rigidbody>();
             this.m_PhotonView = GetComponent<PhotonView>();
             this.m_Grab = GetComponent<OVRGrabbable>();
+        }
+
+        public void Update()
+        {
             if (this.m_Grab.isGrabbed)
             {
-                if (!this.m_PhotonView.IsMine)
+                if (!this.m_PhotonView.IsMine) // Cannot update object information if we don't own the photonview
                 {
                     this.m_PhotonView.RequestOwnership();
                 }
-                this.m_Body.useGravity = false;
-                // Already accounted for in OVR Grabbable
-                //this.m_Body.isKinematic = true;
-                //m_PhotonView.RPC("ChangeGravity", RpcTarget.All, false);
+                if (this.m_Body.isKinematic) // Check to make sure ovrgrabbable has already changed kinematic info
+                {
+                    m_PhotonView.RPC("ChangeKinematic", RpcTarget.Others, this.m_Body.isKinematic);
+                }
             }
             else
             {
-                if (!this.m_PhotonView.IsMine)
+                if (this.m_PhotonView.IsMine && !this.m_Body.isKinematic) // Check to make sure ovrgrabbable has already changed kinematic info
                 {
-                    this.m_PhotonView.RequestOwnership();
+                    m_PhotonView.RPC("ChangeKinematic", RpcTarget.Others, this.m_Body.isKinematic);
                 }
-                this.m_Body.useGravity = true;
-                //this.m_Body.isKinematic = false;
-                //m_PhotonView.RPC("ChangeGravity", RpcTarget.All, true);
             }
         }
 
-        public void FixedUpdate()
-        {
-            if (!this.m_PhotonView.IsMine)
-            {
-                if (this.m_Grab.isGrabbed)
-                {
-                    if (!this.m_PhotonView.IsMine)
-                    {
-                        this.m_PhotonView.RequestOwnership();
-                    }
-                    this.m_Body.useGravity = false;
-                    //this.m_Body.isKinematic = true;
-                    //m_PhotonView.RPC("ChangeGravity", RpcTarget.All, false);
-                }
-                else
-                {
-                    if (!this.m_PhotonView.IsMine)
-                    {
-                        this.m_PhotonView.RequestOwnership();
-                    }
-                    this.m_Body.useGravity = true;
-                    //this.m_Body.isKinematic = false;
-                    //m_PhotonView.RPC("ChangeGravity", RpcTarget.All, true);
-                }
-            }
-        }
-        /*
+        // Send object rigidbody kinematic info
         [PunRPC]
-        void ChangeGravity(bool grabbed)
+        void ChangeKinematic(bool kinematic)
         {
-            this.m_Body.useGravity = grabbed;
-            this.m_Body.isKinematic = !grabbed;
-        }
-        */
-
-
-        public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
-        {
-            if (stream.IsWriting)
-            {
-                stream.SendNext(this.m_Body.useGravity);
-                //stream.SendNext(this.m_Body.isKinematic);
-            }
-            else
-            {
-                this.m_Body.useGravity = (bool)stream.ReceiveNext();
-                //this.m_Body.isKinematic = (bool)stream.ReceiveNext();
-            }
+            this.m_Body.isKinematic = kinematic;
         }
 
     }

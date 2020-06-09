@@ -68,42 +68,42 @@ namespace Com.Udomugo.HoD
         {
             if (!PV.IsMine) { PV.RequestOwnership(); }
             sailsDown = !sailsDown;
-            PV.RPC("RaiseLowerSailsRPC", RpcTarget.Others, sailsDown);
+            PV.RPC("RaiseLowerSailsRPC", RpcTarget.OthersBuffered, sailsDown);
         }
 
         void Anchor()
         {
             if (!PV.IsMine) { PV.RequestOwnership(); }
             anchorDown = !anchorDown;
-            PV.RPC("AnchorRPC", RpcTarget.Others, anchorDown);
+            PV.RPC("AnchorRPC", RpcTarget.OthersBuffered, anchorDown);
         }
 
         void Port()
         {
             if (!PV.IsMine) { PV.RequestOwnership(); }
             braceDir = 1;
-            PV.RPC("SetBraceDirRPC", RpcTarget.Others, braceDir);
+            PV.RPC("SetBraceDirRPC", RpcTarget.OthersBuffered, braceDir);
         }
 
         void Star()
         {
             if (!PV.IsMine) { PV.RequestOwnership(); }
             braceDir = 2;
-            PV.RPC("SetBraceDirRPC", RpcTarget.Others, braceDir);
+            PV.RPC("SetBraceDirRPC", RpcTarget.OthersBuffered, braceDir);
         }
 
         void Norm()
         {
             if (!PV.IsMine) { PV.RequestOwnership(); }
             braceDir = 0;
-            PV.RPC("SetBraceDirRPC", RpcTarget.Others, braceDir);
+            PV.RPC("SetBraceDirRPC", RpcTarget.OthersBuffered, braceDir);
         }
 
         void Hoist()
         {
             if (!PV.IsMine) { PV.RequestOwnership(); }
             hoistDown = !hoistDown;
-            PV.RPC("HoistRPC", RpcTarget.Others, hoistDown);
+            PV.RPC("HoistRPC", RpcTarget.OthersBuffered, hoistDown);
         }
 
         void bracePort(Transform mastOrSail)
@@ -113,7 +113,7 @@ namespace Com.Udomugo.HoD
             {
                 mastOrSail.transform.Rotate(0, -3, 0);
                 trim.transform.rotation = mastOrSail.transform.rotation;
-                PV.RPC("BracePortRPC", RpcTarget.Others, mastOrSail);
+                PV.RPC("BracePortRPC", RpcTarget.OthersBuffered, mastOrSail);
             }
         }
 
@@ -124,7 +124,7 @@ namespace Com.Udomugo.HoD
             {
                 mastOrSail.transform.Rotate(0, 3, 0);
                 trim.transform.rotation = mastOrSail.transform.rotation;
-                PV.RPC("BraceStarRPC", RpcTarget.Others, mastOrSail);
+                PV.RPC("BraceStarRPC", RpcTarget.OthersBuffered, mastOrSail);
             }
         }
 
@@ -135,13 +135,13 @@ namespace Com.Udomugo.HoD
             {
                 mastOrSail.transform.Rotate(0, -3, 0);
                 trim.transform.rotation = mastOrSail.transform.rotation;
-                PV.RPC("BracePortRPC", RpcTarget.Others, mastOrSail);
+                PV.RPC("BracePortRPC", RpcTarget.OthersBuffered, mastOrSail);
             }
             else if ((int)mastOrSail.transform.localEulerAngles.y > 180)
             {
                 mastOrSail.transform.Rotate(0, 3, 0);
                 trim.transform.rotation = mastOrSail.transform.rotation;
-                PV.RPC("BraceStarRPC", RpcTarget.Others, mastOrSail);
+                PV.RPC("BraceStarRPC", RpcTarget.OthersBuffered, mastOrSail);
             }
         }
 

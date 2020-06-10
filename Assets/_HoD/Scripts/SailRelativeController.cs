@@ -62,7 +62,7 @@ public class SailRelativeController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        momentum += (rb.velocity.magnitude - last_vel) * 2f * Time.deltaTime;
+        momentum += (rb.velocity.magnitude - last_vel) * Time.deltaTime;
         if (rb.velocity.magnitude <= 0 || momentum < 0)
         {
             momentum = 0;
@@ -151,7 +151,7 @@ public class SailRelativeController : MonoBehaviour
         Debug.DrawLine(ship.transform.position + (ship.transform.up * 10), rotate_count_vec * 50, Color.cyan);
         Debug.DrawLine(ship.transform.position + (ship.transform.up * 10), down_wind * 50, Color.blue);
 
-        rb.velocity = Vector3.ClampMagnitude(rb.velocity, 3.3f);
+        rb.velocity = Vector3.ClampMagnitude(rb.velocity, 4f);
         last_vel = rb.velocity.magnitude;
     }
 
@@ -191,14 +191,16 @@ public class SailRelativeController : MonoBehaviour
             //rb.AddRelativeTorque(ship.transform.up * rudder_dir * rudder_angle * Mathf.Max((3.5f - rb.velocity.magnitude), 0.2f) * 0.001f * Time.deltaTime, ForceMode.VelocityChange);
             // this is now negative so steering is reversed until the ship slows down too much.
 
+            
 
             // This version of the line above uses a fake momentum
-            turn_speed = momentum * 0.5f;
+            turn_speed = momentum * 0.6f;
             torque_angle = rudder_dir * (Mathf.Sqrt(rudder_angle)) * Time.deltaTime;
             //rb.AddRelativeTorque(ship.transform.up * torque_angle * turn_speed, ForceMode.Acceleration);
 
+            
             world.transform.RotateAround(ship.transform.position, ship.transform.up, torque_angle * turn_speed);
-
+            
             //rb.AddRelativeTorque(ship.transform.up * (4.5f - rb.velocity.magnitude) * 0.005f * rudder_dir * (rudder_angle) * rudder_power_cross);
             //rb.AddRelativeTorque(ship.transform.up * (4.5f - rb.velocity.magnitude) * 0.01f * rudder_dir * rudder_angle * (rudder_power_cross/2));
 

@@ -186,7 +186,7 @@ public class HelmController : MonoBehaviour
         //rudd_turn = rudder.transform.localEulerAngles.y;
         //rudd_turn += helm_wheel_ang * 0.15f;
         //pub_turn = directionalObject.eulerAngles.z;
-        rudd_turn += (helm_wheel_ang * 0.15f * Time.deltaTime)/flux;
+        rudd_turn += (helm_wheel_ang * 2f * Time.deltaTime)/flux;
 
         //var turn = pub_turn;
         /*
